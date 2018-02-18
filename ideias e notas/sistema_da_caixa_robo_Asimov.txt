@@ -1,0 +1,47 @@
+# escrita em 18/02/18, por Dhiego
+
+A caixa atual (o que realiza a função da garra, de pegar as bolas ou vítimas) está na fase Beta, está é mais uma ideia para seu desenvolvimento futuro.
+
+O modelo atual dispõe de apenas uma haste ligada ao motor para levantar e abaixar a caixa, para depositar e capturar as vítimas, respectivamente. Este, apesar de se encaixar muito bem no topo do robô, reduzindo sua altura, acaba por não ser o ideal, pois após a posição de descanso, quando o movimento de captura é realizado, a caixa não encontra o solo ortogonalmente, mas sim em um ângulo que o motor não consegue superar sozinho, o que é problemático.
+
+A proposta para a solucionar o dito foi usar elásticos presos à haste e à caixa, que fazem um bom trabalho na hora da captura. Porém, o problema vai para outro lugar: na posição de descanso, devido aos elásticos de cima, a caixa não fica rente ao topo do robô, o que aumenta sua altura, isso pelo menos quando o motor não está fazendo força para que a caixa fique na posição desejada.
+
+As soluções até o momento são:
+- Manter o motor da caixa fazendo força na caixa, para que esta fique rente ao topo do robô;
+- Ajustar o sistema de elásticos, fazendo com que o elástico de cima exerça só a força suficiente para que a caixa encontre o chão num pequeno ângulo, facilmente superado pela força motriz.
+
+A respeito da segunda solução, tive uma ideia:
+
+O elástico de cima seria preso não à haste diretamente, mas à outro elástico que é preso às duas hastes da caixa, desta forma (leia este arquivo numa fonte monoespaçada para conseguir ver os "desenhos"):
+
+(vista de cima)
+legenda:
+h: haste; c: caixa; m: motor; E: elástico auxiliar; e: elástico de cima.
+========================================================================
+    hmmmh
+    h e h
+   EhEEEhE
+    h e h
+    h e h
+ccccccccccccc
+c     e     c
+c           c
+ccccccccccccc
+========================================================================
+
+no momento, o que temos é o seguinte:
+=====================================
+    hmmmh
+    he eh
+    e   e
+   eh   he
+   eh   he
+ccecccccccecc
+c           c
+c           c
+ccccccccccccc
+=====================================
+(Dois elásticos de cima ligados em uma ponta um em cada haste e na outra, na caixa.)
+
+O resultado seria uma menor força pelos elásticos de cima, o que resolveria o problema, presumo.
+
