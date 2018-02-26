@@ -1,0 +1,4 @@
+26 Fevereiro 2018
+
+- Situação atual
+A montagem do robô está quase pronta: falta apenas bolarmos um jeito de colocar os sensores de obstáculo e talvez o provável sonar para a detecção das bolas na sala 3, mas esta última não é prioridade.
