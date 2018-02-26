@@ -1,4 +1,12 @@
-26 Fevereiro 2018
+26 Fevereiro 2018 13:00
 
 - Situação atual
 A montagem do robô está quase pronta: falta apenas bolarmos um jeito de colocar os sensores de obstáculo e talvez o provável sonar para a detecção das bolas na sala 3, mas esta última não é prioridade.
+
+26 Fevereiro 2018 18:10
+- O que foi feito
+Manutenção na estrutura do robô, repensando como certas partes foram montadas.
+Apesar do conteúdo do registro anterior, prioridade foi dada à montagem do sonar, que foi bem sucedida. A vantagem de termos este sensor ultrassom que pode girar na frente é de usá-lo como substituto a três, um virado para a frente, outro à esquerda e outro à direita, o que por sua vez torna o segundo brick um tanto dispensável. Mas ainda devemos discutir este último ponto.
+- A fazer
+Melhorar o modo que o sonar está posicionado, fazendo com que possa ficar num ângulo de 90º em relação à frente, permitindo que possa olhar diretamente à esquerda ou à direita.
+
