@@ -18,3 +18,12 @@ Mais manutenção na estrutura do robô. Agora devido à minha insatisfação do sonar
 - A fazer
 Acabar de juntar o sonar à estrutura do robô.
 
+28 Fevereiro 2018 18:20
+Autor: Dhiego.
+- O que foi feito
+Sonar estabelecido na frente do robô. Foi notado que este, devido à estrutura do robô, fica pendente para a frente, junto com a frente do robô, o que é um problema ainda a ser investigado.
+Devo salientar que hoje o prof. Henrique chegou com os cartões SD, então já podemos programar o robô em linguagem textual (Python).
+- A fazer
+Investigar esta inclinação que acomete a frente do robô;
+Botar o EV3 DEV no robô, pra programar em linguagem textual.
+
