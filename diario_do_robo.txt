@@ -27,3 +27,11 @@ Devo salientar que hoje o prof. Henrique chegou com os cartões SD, então já pode
 Investigar esta inclinação que acomete a frente do robô;
 Botar o EV3 DEV no robô, pra programar em linguagem textual.
 
+1 Fevereiro 2018 18:16
+Autor: Erike.
+
+-O que foi feito:
+	Instalação do EV3 dev no brick. Sua implementação faz-se necessária, a medida em que pretendemos compilar a linguagem de texto(Python) em nosso robô, através de um cartão SD, onde é encontrada a "distro" que irá executar ao ligamento do processador.
+- A fazer:
+	Fazer um código teste para rodar.
+  
