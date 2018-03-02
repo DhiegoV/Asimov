@@ -34,4 +34,13 @@ Autor: Erike.
 	Instalação do EV3 dev no brick. Sua implementação faz-se necessária, a medida em que pretendemos compilar a linguagem de texto(Python) em nosso robô, através de um cartão SD, onde é encontrada a "distro" que irá executar ao ligamento do processador.
 - A fazer:
 	Fazer um código teste para rodar.
-  
+
+2 Fevereiro 2018 19:18 
+Autor: Erike
+- O que foi feito:
+	Criação de um código em programação textual(Python);
+	Conexão teste via ssh;
+	- Experimentando a aplicabilidade do Python no robô, fizemos um código 'primitivo' que foi executado pelo terminal do linux via ssh, a fim de fazer upload remoto dos códigos para execução no processador do robô.
+- A fazer:
+	Começar o desenvolvimento do código "master" no python.
+    
