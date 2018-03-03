@@ -27,7 +27,7 @@ Devo salientar que hoje o prof. Henrique chegou com os cartões SD, então já pode
 Investigar esta inclinação que acomete a frente do robô;
 Botar o EV3 DEV no robô, pra programar em linguagem textual.
 
-1 Fevereiro 2018 18:16
+1 Março 2018 18:16
 Autor: Erike.
 
 -O que foi feito:
@@ -35,12 +35,13 @@ Autor: Erike.
 - A fazer:
 	Fazer um código teste para rodar.
 
-2 Fevereiro 2018 19:18 
+2 Março 2018 19:18 
 Autor: Erike
 - O que foi feito:
 	Criação de um código em programação textual(Python);
 	Conexão teste via ssh;
-	- Experimentando a aplicabilidade do Python no robô, fizemos um código 'primitivo' que foi executado pelo terminal do linux via ssh, a fim de fazer upload remoto dos códigos para execução no processador do robô.
+	- Experimentando a aplicabilidade do Python no robô, fizemos um código 'primitivo' que foi executado pelo terminal do linux via ssh, a fim de fazer upload remoto dos códigos para execução dos mesmos no processador do robô.
 - A fazer:
-	Começar o desenvolvimento do código "master" no python.
-    
+	Começar o desenvolvimento do código "master" no python;
+	Analisar as possibilidades de uma potência elevada, que será aplicada aos motores.
+  
