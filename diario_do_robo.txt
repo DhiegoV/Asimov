@@ -44,4 +44,19 @@ Autor: Erike
 - A fazer:
 	Começar o desenvolvimento do código "master" no python;
 	Analisar as possibilidades de uma potência elevada, que será aplicada aos motores.
-  
+
+5 Março 2018 19:21
+Autor: Erike.
+
+-O que foi feito:
+	Criação do código "seguir linha" em python, com lógica proporcional(P);
+	testes de valores predefinidos para o futuro funcionamento eficaz do robô;
+	- O código para seguimento de linha, ainda está em sua fase "primitiva" de desenvolvimento, não estando aplicado assim, o comando de curvas quando o sensor detectar a cor verde, por exemplo.
+-Problemas detectados:
+	 Procurando anular os valores do "erro" no código, o robô tenta corrigir esses valores compensando a potencia no motor oposto ao erro. Contudo, a distância interna entre os sensores faz com que esse erro seja muito corrigido.
+
+- A fazer:
+	Diminuir a distância entre os sensores;
+	Analisar o funcionamento do "P" no código.
+
+ 
