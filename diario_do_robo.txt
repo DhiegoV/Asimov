@@ -59,4 +59,18 @@ Autor: Erike.
 	Diminuir a distância entre os sensores;
 	Analisar o funcionamento do "P" no código.
 
- 
+6 Março 2018 17:32
+Autor: Erike.
+
+-O que foi feito:
+	Modificação da estrutura física dos sensores;
+	Conexão SFTP da IDE(Python) com o robô;
+	Função de saturação da potencia para os motores.
+	- Analisando o funcionamento dos sensores, concluimos que o fato dele corrigir muito estava sendo influenciado pela grande distância entre os sensores, assim como a posição em que se encontravam: No centro do corpo do robô. Dessa forma, refizemos a estrutura dos mesmos, diminuindo a distância e elterando a posição, colocando os sensores mais a frente da posição atual;
+	- A conexão SFTP permite-nos fazer upload do código com o Pycharm para o processador do brick;
+	- A função de saturação, satura o valor do giro para não ultrapassar o valor máximo de potência adicionada aos motores.
+- A fazer:
+	Aplicar o código com a função sat(), e analisar seu funcionamento;
+	Desenvolver partes do código.
+
+	  
