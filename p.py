@@ -8,8 +8,8 @@ from time import sleep
 #esq branco +- 55
 #dir branco +- 54
 
-KP = 2.87
-TP= -200
+KP = 10
+TP= 100
 OFFSET = 0
 
 #MOTORES
@@ -49,3 +49,4 @@ def executar():
                 esq.run_forever(speed_sp=giro_esq)
                 dir.run_forever(speed_sp=giro_dir)
 executar()
+
