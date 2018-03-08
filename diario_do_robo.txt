@@ -77,13 +77,24 @@ Autor: Erike.
 Autor: Erike
 -O que foi feito:
 	Análise do funcionamento do código com "P";
-	Desenvolvimento incompleto da integral;
 	Constantes ajustes nos valores do código.
 	-Objetivando ter valores estáveis para a execução do código, colocamos o robô para no circuito de seguir linha, e alteramos os valores das variáveis conforme o desempenho do mesmo na sua compilação. Após horas de testes, tivemos um ótimo resultado, porém, a correção dos erros encontrados pelos sensores durante o circuito só se dava com uma velocidade baixa.
 
 -A fazer:
 	Verificar quais os valores máximos que podem ser corrigidos pela variável de correção.
-	Testar o código com a integral.
 
+ 8 Março 2018 16:04
+Autor: Erike.
 
- 
+-O que foi feito:
+	Modificação da estrutura das esteiras;
+	Desenvolvimento incompleto da integral(I);
+	Testes do código;
+	-A estrutura anterior da esteira é reta, o que acaba por fazer estralos ao ser girada. Dessa forma, refizemos com um formato triangular: Esticando e diminuindo estralos ao dar mais atrito;
+	-Foi desenvolvido partes da lógica "I" para ser utilizada;
+	-O teste do código no estado atual do robô,que irá para competição, porém, deixou a desejar.
+
+-A fazer: 
+	Descobrir o que ocasiona seu mal desempenho;
+	Testar código com a integral
+
