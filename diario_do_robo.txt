@@ -73,4 +73,17 @@ Autor: Erike.
 	Aplicar o código com a função sat(), e analisar seu funcionamento;
 	Desenvolver partes do código.
 
-	  
+7 Março 2018 17:45
+Autor: Erike
+-O que foi feito:
+	Análise do funcionamento do código com "P";
+	Desenvolvimento incompleto da integral;
+	Constantes ajustes nos valores do código.
+	-Objetivando ter valores estáveis para a execução do código, colocamos o robô para no circuito de seguir linha, e alteramos os valores das variáveis conforme o desempenho do mesmo na sua compilação. Após horas de testes, tivemos um ótimo resultado, porém, a correção dos erros encontrados pelos sensores durante o circuito só se dava com uma velocidade baixa.
+
+-A fazer:
+	Verificar quais os valores máximos que podem ser corrigidos pela variável de correção.
+	Testar o código com a integral.
+
+
+ 
