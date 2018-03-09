@@ -25,7 +25,7 @@ Devo salientar que hoje o prof. Henrique chegou com os cartões SD, então já pode
 Investigar esta inclinação que acomete a frente do robô;
 Botar o EV3 DEV no robô, pra programar em linguagem textual.
 
-1 Fevereiro 2018 18:16
+1 Março 2018 18:16
 Autor: Erike.
 
 -O que foi feito:
@@ -33,19 +33,71 @@ Autor: Erike.
 - A fazer:
 	Fazer um código teste para rodar.
 
-2 Fevereiro 2018 19:18 
+2 Março 2018 19:18 
 Autor: Erike
 - O que foi feito:
 	Criação de um código em programação textual(Python);
 	Conexão teste via ssh;
-	- Experimentando a aplicabilidade do Python no robô, fizemos um código 'primitivo' que foi executado pelo terminal do linux via ssh, a fim de fazer upload remoto dos códigos para execução no processador do robô.
+	- Experimentando a aplicabilidade do Python no robô, fizemos um código 'primitivo' que foi executado pelo terminal do linux via ssh, a fim de fazer upload remoto dos códigos para execução dos mesmos no processador do robô.
 - A fazer:
-	Começar o desenvolvimento do código "master" no python.
+	Começar o desenvolvimento do código "master" no python;
+	Analisar as possibilidades de uma potência elevada, que será aplicada aos motores.
+
+5 Março 2018 19:21
+Autor: Erike.
+
+-O que foi feito:
+	Criação do código "seguir linha" em python, com lógica proporcional(P);
+	testes de valores predefinidos para o futuro funcionamento eficaz do robô;
+	- O código para seguimento de linha, ainda está em sua fase "primitiva" de desenvolvimento, não estando aplicado assim, o comando de curvas quando o sensor detectar a cor verde, por exemplo.
+-Problemas detectados:
+	 Procurando anular os valores do "erro" no código, o robô tenta corrigir esses valores compensando a potencia no motor oposto ao erro. Contudo, a distância interna entre os sensores faz com que esse erro seja muito corrigido.
+
+- A fazer:
+	Diminuir a distância entre os sensores;
+	Analisar o funcionamento do "P" no código.
+
+6 Março 2018 17:32
+Autor: Erike.
+
+-O que foi feito:
+	Modificação da estrutura física dos sensores;
+	Conexão SFTP da IDE(Python) com o robô;
+	Função de saturação da potencia para os motores.
+	- Analisando o funcionamento dos sensores, concluimos que o fato dele corrigir muito estava sendo influenciado pela grande distância entre os sensores, assim como a posição em que se encontravam: No centro do corpo do robô. Dessa forma, refizemos a estrutura dos mesmos, diminuindo a distância e elterando a posição, colocando os sensores mais a frente da posição atual;
+	- A conexão SFTP permite-nos fazer upload do código com o Pycharm para o processador do brick;
+	- A função de saturação, satura o valor do giro para não ultrapassar o valor máximo de potência adicionada aos motores.
+- A fazer:
+	Aplicar o código com a função sat(), e analisar seu funcionamento;
+	Desenvolver partes do código.
+
+7 Março 2018 17:45
+Autor: Erike
+-O que foi feito:
+	Análise do funcionamento do código com "P";
+	Constantes ajustes nos valores do código.
+	-Objetivando ter valores estáveis para a execução do código, colocamos o robô para no circuito de seguir linha, e alteramos os valores das variáveis conforme o desempenho do mesmo na sua compilação. Após horas de testes, tivemos um ótimo resultado, porém, a correção dos erros encontrados pelos sensores durante o circuito só se dava com uma velocidade baixa.
+
+-A fazer:
+	Verificar quais os valores máximos que podem ser corrigidos pela variável de correção.
+
+ 8 Março 2018 16:04
+Autor: Erike.
+
+-O que foi feito:
+	Modificação da estrutura das esteiras;
+	Desenvolvimento incompleto da integral(I);
+	Testes do código;
+	-A estrutura anterior da esteira é reta, o que acaba por fazer estralos ao ser girada. Dessa forma, refizemos com um formato triangular: Esticando e diminuindo estralos ao dar mais atrito;
+	-Foi desenvolvido partes da lógica "I" para ser utilizada;
+	-O teste do código no estado atual do robô,que irá para competição, porém, deixou a desejar.
+
+-A fazer: 
+	Descobrir o que ocasiona seu mal desempenho;
+	Testar código com a integral
 
 9 Março 2018 17:45
 Autor: Dhiego
 - O que foi feito
-Nova esteira feita. Ela inclina o robô para trás um pouco, o que acaba com (ou pelo menos alivia, ainda falta teste) os problemas de inclinação ressaltados no dia 28 de Fevereiro, aqui anotados. Apesar disso, esta não foi a razão para reconstruir a esteira, a razão foi de fato melhorar o funcionalidade da esteira do robô, reduzindo (ou acabando com, ainda falta teste com a programação) os 'estalos' que ocorriam quando usávamos calotas (?) feitas para uso com pneus e não com esteiras, inclusive, por causa disto acho que os 'estalos' ocorriam.
-- A fazer
-	O mesmo do A fazer do registro passado: começar a programar de fato o robô em Python.
+	Nova esteira feita. Ela inclina o robô para trás um pouco, o que acaba com (ou pelo menos alivia, ainda falta teste) os problemas de inclinação ressaltados no dia 28 de Fevereiro, aqui anotados. Apesar disso, esta não foi a razão para reconstruir a esteira, a razão foi de fato melhorar o funcionalidade da esteira do robô, reduzindo (ou acabando com, ainda falta teste com a programação) os 'estalos' que ocorriam quando usávamos calotas (?) feitas para uso com pneus e não com esteiras, inclusive, por causa disto acho que os 'estalos' ocorriam.
 
