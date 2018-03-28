@@ -101,3 +101,10 @@ Autor: Dhiego
 - O que foi feito
 	Nova esteira feita. Ela inclina o robô para trás um pouco, o que acaba com (ou pelo menos alivia, ainda falta teste) os problemas de inclinação ressaltados no dia 28 de Fevereiro, aqui anotados. Apesar disso, esta não foi a razão para reconstruir a esteira, a razão foi de fato melhorar o funcionalidade da esteira do robô, reduzindo (ou acabando com, ainda falta teste com a programação) os 'estalos' que ocorriam quando usávamos calotas (?) feitas para uso com pneus e não com esteiras, inclusive, por causa disto acho que os 'estalos' ocorriam.
 
+27 Março 2018 20:21
+Autor: Erike
+-O que foi feito:
+	Mais modificações na estrutura dos sensores;
+	- Isso se deu, pelo fato de sua posição atual não estar alinhada ao eixo de giro do robô, o que dificulta a correção das linhas a serem seguidas. Acredito que esse seja o motivo para o mal desempenho na pista, em consonancia com o espaçamento exagerado entre os sensores.
+-A fazer:
+	Diminuir a distancia entre os sensores;
