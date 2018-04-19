@@ -108,3 +108,9 @@ Autor: Erike
 	- Isso se deu, pelo fato de sua posição atual não estar alinhada ao eixo de giro do robô, o que dificulta a correção das linhas a serem seguidas. Acredito que esse seja o motivo para o mal desempenho na pista, em consonancia com o espaçamento exagerado entre os sensores.
 -A fazer:
 	Diminuir a distancia entre os sensores;
+
+5 Abril 2018 18:00
+	Autor: Dhiego
+	- O que foi feito
+		Chassi abandonado. Refizemos o robô por inteiro, aproveitando um pouco da esteira e toda a caixa de captura de bolas, que ainda será adaptada para o novo robô.
+
