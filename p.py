@@ -2,25 +2,11 @@
 
 from ev3dev.ev3 import *
 from time import sleep
+from portas_modos import *
 
 KP = 5.5
 TP= 120
 OFFSET = 0
-
-#MOTORES
-esq = LargeMotor('outA')
-dir = LargeMotor('outB')
-#motor_garra = LargeMotor('outC')
-#motor_sensor = MediumMotor('outD')
-
-
-#SENSORES
-sensor_esq = ColorSensor(address=INPUT_1)
-sensor_dir = ColorSensor(address=INPUT_2)
-sonar = UltrasonicSensor(address=INPUT_3)
-
-sensor_esq.mode = 'COL-REFLECT'
-sensor_dir.mode = 'COL-REFLECT'
 
 def sat(giro):
     POT_MAX = 1000
@@ -40,6 +26,7 @@ def sat(giro):
 
 
 def ver_verde(giro_esq, giro_dir):   # FUNÇÃO INCOMPLETA
+	pass
     # sensor_esq.mode="RGB-RAW" -->> PENSANDO EM UTILIZAR COM MÓDULO RGB.
     # sensor_dir.mode="RGB-RAW"
 
@@ -56,3 +43,4 @@ def executar():
         #ver_verde(giro_esq,giro_dir)
 
 executar()
+
