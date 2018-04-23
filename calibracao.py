@@ -24,12 +24,19 @@ def esperar_botao():
 	while not botao.any():
 		sleep(0.1)
 
+	# esperar tirar o dedo do botão
+	sleep(1.5)
+
+# dicionarios pros valores dos sensores
+direita = {}
+esquerda = {}
+
 # PRETO
 print("Coloque os dois sensores no preto")
 esperar_botao()
 
-direita["branco"] = sensor_dir.value()
-esquerda["branco"] = sensor_esq.value()
+direita["preto"] = sensor_dir.value()
+esquerda["preto"] = sensor_esq.value()
 
 print("pretos:")
 print("esq:", esquerda["preto"], "dir:", direita["preto"])
@@ -47,11 +54,11 @@ print("esq:", esquerda["branco"], "dir:", direita["branco"])
 esperar_botao()
 
 # SALVANDO
-arq_dir = open(w, "sensor_direita.json")
+arq_dir = open("sensor_direita.json", 'w')
 dump(direita, arq_dir)
 arq_dir.close()
 
-arq_esq = open(w, "sensor_esquerda.json")
+arq_esq = open("sensor_esquerda.json", 'w')
 dump(esquerda, arq_esq)
 arq_esq.close()
 
