@@ -18,11 +18,11 @@ system('setfont Lat15-TerminusBold14')
 
 botao = Button()
 def esperar_botao():
-    # Para a execucao ate que um botao seja pressionado.
+	# Para a execucao ate que um botao seja pressionado.
 
-    # enquanto nenhum botao eh pressionado
-    while not botao.any():
-        sleep(0.1)
+	# enquanto nenhum botao eh pressionado
+	while not botao.any():
+		sleep(0.1)
 
 # PRETO
 print("Coloque os dois sensores no preto")
