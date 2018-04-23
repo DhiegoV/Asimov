@@ -4,15 +4,15 @@ from ev3dev.ev3 import *
 from portas_modos import *
 from json import load
 
-arq_dir = open(r, "sensor_direita.json")
+arq_dir = open("sensor_direita.json")
 direita = load(arq_dir)
 arq_dir.close()
 
-arq_esq = open(r, "sensor_esquerda.json")
+arq_esq = open("sensor_esquerda.json")
 esquerda = load(arq_esq)
 arq_esq.close()
 
-KP = 5.5
+KP = 0.7
 TP = 120
 OFFSET = 0
 
@@ -60,8 +60,8 @@ def executar():
         p = KP * erro
         giro_dir = sat(TP + p)
         giro_esq = sat(TP - p)
-        esq.run_forever(speed_sp=giro_esq)
-        dir.run_forever(speed_sp=giro_dir)
+        esq.run_forever(speed_sp=giro_esq*(-1))
+        dir.run_forever(speed_sp=giro_dir*(-1))
 
 executar()
 
