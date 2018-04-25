@@ -59,8 +59,9 @@ def get_valor_sensor_esquerda():
 def executar():
 	pid = PID(KP, KI, KD)
 	pid.SetPoint = 0
+	botao = Button()
 
-	while True:
+	while not botao.any():
 		erro = get_valor_sensor_direita() - get_valor_sensor_esquerda()
 		pid.update(erro)
 		correcao = pid.output
@@ -70,6 +71,10 @@ def executar():
 
 		esq.run_forever(speed_sp=giro_esq*(-1))
 		dir.run_forever(speed_sp=giro_dir*(-1))
+
+	esq.stop()
+	dir.stop()
+
 
 executar()
 
