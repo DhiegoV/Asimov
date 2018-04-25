@@ -1,9 +1,13 @@
-from ev3dev.eve3 import *
+#!/usr/bin/env python3
+
+from ev3dev.ev3 import *
 from PID import PID
 
 
-KP = 5.5
-TP= 120
+KP = 5.9
+KI = 0
+KD = 0
+TP = 120
 OFFSET = 0
 
 #MOTORES
@@ -37,17 +41,19 @@ def sat(giro):
 
     return giro
 
-def executar(KP,KI,KD,TP):
-    pid=PID(KP,KI,KD)
-    pid.SetPoint=0
+def executar():
+    pid = PID(KP, KI, KD)
+    pid.SetPoint = 0
 
     while True:
-        erro = (sensor_dir.value() - sensor_esq.value())    #o erro "real" é dado pela diferença entre os dois sensores
-        p = KP * erro   #Calcula o valor do p que será aplicado aos motores
+        erro = (sensor_dir.value() - sensor_esq.value())
         pid.update(erro)
-        giro_dir = sat(TP + p)
-        giro_esq = sat(TP - p)
-        esq.run_forever(speed_sp=giro_esq)
-        dir.run_forever(speed_sp=giro_dir)
+        correcao = pid.output
+
+        giro_dir = sat(TP - correcao)
+        giro_esq = sat(TP + correcao)
+
+        esq.run_forever(speed_sp=giro_esq*(-1))
+        dir.run_forever(speed_sp=giro_dir*(-1))
 
 executar()
