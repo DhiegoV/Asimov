@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 
 from ev3dev.ev3 import *
-from time import sleep
+from PID import PID
 
-KP = 5.5
-TP= 120
+
+KP = 5.9
+KI = 0
+KD = 0
+TP = 120
 OFFSET = 0
 
 #MOTORES
@@ -38,21 +41,19 @@ def sat(giro):
 
     return giro
 
-
-def ver_verde(giro_esq, giro_dir):   # FUNÇÃO INCOMPLETA
-    # sensor_esq.mode="RGB-RAW" -->> PENSANDO EM UTILIZAR COM MÓDULO RGB.
-    # sensor_dir.mode="RGB-RAW"
-
-
 def executar():
+    pid = PID(KP, KI, KD)
+    pid.SetPoint = 0
+
     while True:
         erro = (sensor_dir.value() - sensor_esq.value())
-        p = KP * erro
-        giro_dir = sat(TP+p)
-        giro_esq = sat(TP-p)
-        # print(sensor_esq.value(), giro_esq, giro_dir, sensor_dir.val ue(), p)
-        esq.run_forever(speed_sp=giro_esq)
-        dir.run_forever(speed_sp=giro_dir)
-        #ver_verde(giro_esq,giro_dir)
+        pid.update(erro)
+        correcao = pid.output
+
+        giro_dir = sat(TP - correcao)
+        giro_esq = sat(TP + correcao)
+
+        esq.run_forever(speed_sp=giro_esq*(-1))
+        dir.run_forever(speed_sp=giro_dir*(-1))
 
 executar()
