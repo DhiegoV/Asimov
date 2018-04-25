@@ -3,6 +3,7 @@
 from ev3dev.ev3 import *
 from portas_modos import *
 from json import load
+from PID import PID
 
 arq_dir = open("sensor_direita.json")
 direita = load(arq_dir)
@@ -13,8 +14,9 @@ esquerda = load(arq_esq)
 arq_esq.close()
 
 KP = 0.7
+KI = 0
+KD = 0
 TP = 120
-OFFSET = 0
 
 def sat(giro):
 	'''
@@ -55,11 +57,17 @@ def get_valor_sensor_esquerda():
 	return valor
 
 def executar():
+	pid = PID(KP, KI, KD)
+	pid.SetPoint = 0
+
 	while True:
 		erro = get_valor_sensor_direita() - get_valor_sensor_esquerda()
-		p = KP * erro
-		giro_dir = sat(TP + p)
-		giro_esq = sat(TP - p)
+		pid.update(erro)
+		correcao = pid.output
+
+		giro_dir = sat(TP - correcao)
+		giro_esq = sat(TP + correcao)
+
 		esq.run_forever(speed_sp=giro_esq*(-1))
 		dir.run_forever(speed_sp=giro_dir*(-1))
 
