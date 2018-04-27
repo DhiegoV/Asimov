@@ -13,7 +13,7 @@ arq_esq = open("sensor_esquerda.json")
 esquerda = load(arq_esq)
 arq_esq.close()
 
-KP = 0.7
+KP = 0.5
 KI = 0
 KD = 0
 TP = 120
