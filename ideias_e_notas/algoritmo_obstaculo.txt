@@ -1,0 +1,33 @@
+rotação + -> direita
+rotação - -> esquerda
+
+aqui, trata-se de um contorno do obstáculo pela direita.
+
+# usando giroscópio
+	detecta o obstaculo
+	gira +90g
+	anda x rotações
+	gira -90g
+	anda y rotações
+	gira -90g
+	até chegar à rotação x
+		anda pra frente
+		se achar linha
+			seajeitar()
+			# obstaculo superado
+	# caçar linha
+	loop infinito
+		até chegar em z
+			anda pra frente
+			se achar linha
+				se_ajeitar()
+				# obstaculo superado
+		volta z
+		gira -10g
+
+	funcao seajeitar
+		ate ficar perpendicular à linha
+			girar pra ficar perpendicular à linha
+		girar +90g
+		voltar pra seguir linha com PID
+
