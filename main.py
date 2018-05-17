@@ -18,6 +18,36 @@ KI = 0
 KD = 0
 TP = 120
 
+def girar(sentido):
+    # Gira o robô no próprio eixo 90 graus no dado sentido
+
+    # direita é um valor .....
+    # esquerda é um valor .....
+    velocidade = 100
+    noventa_graus_em_rotacoes = 90
+
+    if sentido == 'esquerda':
+        dir.on_for_rotations(velocidade, noventa_graus_em_rotacoes)
+        esq.on_for_rotations(-velocidade, noventa_graus_em_rotacoes)
+    elif sentido == 'direita':
+        dir.on_for_rotations(-velocidade, noventa_graus_em_rotacoes)
+        esq.on_for_rotations(velocidade, noventa_graus_em_rotacoes)
+    else:
+        print('SENTIDO INFORMADO ERRONEAMENTE')
+
+def rotina_verde():
+    # Verifica se algum dos sensores vê verde e gira de acordo
+
+    modo_anterior = sensor_esq.mode
+    sensor_esq.mode = 'COL-COLOR'
+    sensor_dir.mode = 'COL-COLOR'
+
+    # se o sensor vê verde, cor 3
+    if sensor_esq.value() == 3:
+        girar('esquerda', 90)
+    elif sensor_dir.value() == 3:
+        girar('direita', 90)
+
 def sat(giro):
 	'''
 	Satura o valor do giro para não ultrapassar o valor máximo do motor
