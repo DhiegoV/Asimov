@@ -114,3 +114,17 @@ Autor: Erike
 	- O que foi feito
 		Chassi abandonado. Refizemos o robô por inteiro, aproveitando um pouco da esteira e toda a caixa de captura de bolas, que ainda será adaptada para o novo robô.
 
+24 Abril 2018 15:53
+	Autor: Dhiego
+	- O que foi feito
+		Elaboração de uma escala de calibração dos sensores:
+			Análogo ao conceito de escalas termométricas, é definido cada sensor como tendo sua própria escala de valores. Nesta, o mínimo valor é o valor do preto (baixa reflectância) e o máximo, do branco (alta reflectância), como a calibração dos sensores estabelece.
+			Os valores, no momento de execução, então são lidos dos sensores e, usando suas respectivas escalas, são convertidos para uma escala comum, que vai de 0 a 1000.
+			Dessa forma, obtemos o mesmo valor na execução para o mesmo tom de cinza, independentemente do sensor, o que não ocorre naturalmente. O benefício mais evidente é que, nas falhas de linha, o robô segue reto, sem "pender" para um lado. 
+
+10 Maio 2018 16:21
+	Autor: Erike
+	- O que foi feito
+		Codificação do seguir linha, agora com valor de "KD" ajudando na correção;
+
+
