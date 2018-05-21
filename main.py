@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: UTF-8 -*-
 
 from ev3dev.ev3 import *
 from portas_modos import *
@@ -19,73 +20,72 @@ KD = 0
 TP = 120
 
 def compensar_verde(momento):
-	# Anda um pouco para frente para evitar que o robo veja o verde novamente
-	# apos o giro de 90
+	"""Compensa andando para realizar o trajeto do verde corretamente."""
 
-	# ate_eixo_rotacao eh a distancia em graus para o motor girar ate que o eixo de
-	# rotacao do robo seja alcancado
-
-	# TO DO!
+	# momento � em rela��o ao verde
 	if momento == 'antes':
-		ate_eixo_rotacao = 160
-		v_ajuste = 80
+		quanto_andar = 160
+		vel_ajuste = 80
+	else:
+		quanto_andar = 50
+		vel_ajuste = 60
 
-	Sound.beep()
-	dir.run_to_rel_pos(position_sp=-ate_eixo_rotacao, speed_sp=v_ajuste)
-	esq.run_to_rel_pos(position_sp=-ate_eixo_rotacao, speed_sp=v_ajuste)
+	dir.run_to_rel_pos(position_sp=-quanto_andar, speed_sp=vel_ajuste)
+	esq.run_to_rel_pos(position_sp=-quanto_andar, speed_sp=vel_ajuste)
 	esq.wait_while('running')
 
 
 def girar(sentido):
-	# Gira o robô no próprio eixo 90 graus no dado sentido
+	"""Gire o robô nopróprio eixo 90 graus no dao sentido."""
 
 	velocidade = 400
 
-	# direita é um vaor positivo e esquerda é um valr negativo, pois positivo
-	# eh sentido horario
+	# direita é um vlor positivo e esquerda é um vaor negativo, pois positivo
+	# é sentid hor�rio
 	# 90 graus p/ robo = 420 graus p/ motor
 	quanto_rodar = 420
 
 	if sentido == 'esquerda':
-		compensar_verde()
-
-		Sound.beep()
 		dir.run_to_rel_pos(position_sp=-quanto_rodar, speed_sp=velocidade)
 		esq.run_to_rel_pos(position_sp=quanto_rodar, speed_sp=velocidade)
 		esq.wait_while('running')
 
-		compensar_verde()
 	elif sentido == 'direita':
-		compensar_verde()
-
-		Sound.beep()
 		dir.run_to_rel_pos(position_sp=quanto_rodar, speed_sp=velocidade)
 		esq.run_to_rel_pos(position_sp=-quanto_rodar, speed_sp=velocidade)
 		esq.wait_while('running')
 
-		compensar_verde()
 	else:
 		print('SENTIDO INFORMADO ERRONEAMENTE')
 
 def rotina_verde():
-	# Verifica se algum dos sensores vê verde e gira de acordo
-
+	"""Verifica se algum dos sensores vê verde e gira de acoro."""
 	modo_anterior = sensor_esq.mode
 	sensor_esq.mode = 'COL-COLOR'
 	sensor_dir.mode = 'COL-COLOR'
 
 	# se o sensor vê verde, cor 3
 	if sensor_esq.value() == 3:
+		Sound.beep()
+		compensar_verde("antes")
 		girar('esquerda')
+		compensar_verde("depois")
+
 	elif sensor_dir.value() == 3:
+		Sound.beep()
+		compensar_verde("antes")
 		girar('direita')
+		compensar_verde("depois")
 
 	sensor_esq.mode = modo_anterior
 	sensor_dir.mode = modo_anterior
 
 def parece_verde():
-	# Verifica se o valor de reflectancia atual parece com o de
-	# reflectancia de verde, retornando True se sim, e False se não.
+	"""
+	Verifique se o valor de reflectância atual parece com o de reflecância de verde.
+	
+	Retorna um booleano True se sim, False sen�o.
+	"""
 
 	if sensor_dir.value() in range(direita["verde_min"], direita["verde_max"]):
 		return True
@@ -113,7 +113,7 @@ def sat(giro):
 	return giro
 
 def get_valor_sensor_direita():
-	# Retorna o valor do sensor da direita calibrado, na escala de 0-1000
+	"""Retorna o valor do sensor da direita calibrado, na escala de 0-1000."""
 
 	valor = (
 		(direita["branco"] - sensor_dir.value()) /
@@ -123,7 +123,7 @@ def get_valor_sensor_direita():
 	return valor
 
 def get_valor_sensor_esquerda():
-	# Retorna o valor do sensor da esquerda calibrado, na escala de 0-1000
+	"""Retorna o valor do sensor da esquerda calibrado, na escala de 0-1000."""
 
 	valor = (
 		(esquerda["branco"] - sensor_esq.value()) /
