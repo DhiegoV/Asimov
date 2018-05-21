@@ -22,7 +22,7 @@ TP = 120
 def compensar_verde(momento):
 	"""Compensa andando para realizar o trajeto do verde corretamente."""
 
-	# momento � em rela��o ao verde
+	# momento é em relação ao verde
 	if momento == 'antes':
 		quanto_andar = 160
 		vel_ajuste = 80
@@ -36,13 +36,13 @@ def compensar_verde(momento):
 
 
 def girar(sentido):
-	"""Gire o robô nopróprio eixo 90 graus no dao sentido."""
+	"""Gire o robô no próprio eixo 90 graus no dado sentido."""
 
 	velocidade = 400
 
-	# direita é um vlor positivo e esquerda é um vaor negativo, pois positivo
-	# é sentid hor�rio
-	# 90 graus p/ robo = 420 graus p/ motor
+	# Direita é um valor positivo e esquerda é um valor negativo.
+	# Positivo = sentido horário.
+	# 90 graus p/ robo = 420 graus p/ motor.
 	quanto_rodar = 420
 
 	if sentido == 'esquerda':
@@ -58,8 +58,8 @@ def girar(sentido):
 	else:
 		print('SENTIDO INFORMADO ERRONEAMENTE')
 
-def rotina_verde():
-	"""Verifica se algum dos sensores vê verde e gira de acoro."""
+def confirme_verde():
+	"""Verifique se algum dos sensores vê verde e gire de acordo."""
 	modo_anterior = sensor_esq.mode
 	sensor_esq.mode = 'COL-COLOR'
 	sensor_dir.mode = 'COL-COLOR'
@@ -82,9 +82,9 @@ def rotina_verde():
 
 def parece_verde():
 	"""
-	Verifique se o valor de reflectância atual parece com o de reflecância de verde.
+	Verifique se o valor de reflectância atual parece com o de reflectância de verde.
 	
-	Retorna um booleano True se sim, False sen�o.
+	Retorna um booleano True se sim, False senão.
 	"""
 
 	if sensor_dir.value() in range(direita["verde_min"], direita["verde_max"]):
@@ -95,11 +95,11 @@ def parece_verde():
 		return False
 
 def sat(giro):
-	'''
-	Satura o valor do giro para não ultrapassar o valor máximo do motor
+	"""
+	Satura o valor do giro para não ultrapassar o valor máximo do motor.
 	:para giro: KP*erro +ou- TP
 	:return: O valor do giro saturado
-	'''
+	"""
 
 	POT_MAX = 1000
 	POT_MIN = -1000
@@ -113,7 +113,7 @@ def sat(giro):
 	return giro
 
 def get_valor_sensor_direita():
-	"""Retorna o valor do sensor da direita calibrado, na escala de 0-1000."""
+	"""Retorne o valor do sensor direito convertido para a escala de 0-1000."""
 
 	valor = (
 		(direita["branco"] - sensor_dir.value()) /
@@ -123,7 +123,7 @@ def get_valor_sensor_direita():
 	return valor
 
 def get_valor_sensor_esquerda():
-	"""Retorna o valor do sensor da esquerda calibrado, na escala de 0-1000."""
+	"""Retorne o valor do sensor esquerdo convertido para a escala de 0-1000."""
 
 	valor = (
 		(esquerda["branco"] - sensor_esq.value()) /
@@ -139,7 +139,7 @@ def executar():
 
 	while not botao.any():
 		if parece_verde():
-			rotina_verde()
+			confirme_verde()
 
 		erro = get_valor_sensor_direita() - get_valor_sensor_esquerda()
 		pid.update(erro)
