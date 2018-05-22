@@ -1,118 +1,118 @@
 26 Fevereiro 2018 13:00
 Autor: Dhiego.
-- SituaÁ„o atual
-A montagem do robÙ est· quase pronta: falta apenas bolarmos um jeito de colocar os sensores de obst·culo e talvez o prov·vel sonar para a detecÁ„o das bolas na sala 3, mas esta ˙ltima n„o È prioridade.
+- Situa√ß√£o atual
+A montagem do rob√¥ est√° quase pronta: falta apenas bolarmos um jeito de colocar os sensores de obst√°culo e talvez o prov√°vel sonar para a detec√ß√£o das bolas na sala 3, mas esta √∫ltima n√£o √© prioridade.
 
 26 Fevereiro 2018 18:10
 Autor: Dhiego.
 - O que foi feito
-ManutenÁ„o na estrutura do robÙ, repensando como certas partes foram montadas.
-Apesar do conte˙do do registro anterior, prioridade foi dada ‡ montagem do sonar, que foi bem sucedida. A vantagem de termos este sensor ultrassom que pode girar na frente È de us·-lo como substituto a trÍs, um virado para a frente, outro ‡ esquerda e outro ‡ direita, o que por sua vez torna o segundo brick um tanto dispens·vel. Mas ainda devemos discutir este ˙ltimo ponto.
+Manuten√ß√£o na estrutura do rob√¥, repensando como certas partes foram montadas.
+Apesar do conte√∫do do registro anterior, prioridade foi dada √† montagem do sonar, que foi bem sucedida. A vantagem de termos este sensor ultrassom que pode girar na frente √© de us√°-lo como substituto a tr√™s, um virado para a frente, outro √† esquerda e outro √† direita, o que por sua vez torna o segundo brick um tanto dispens√°vel. Mas ainda devemos discutir este √∫ltimo ponto.
 - A fazer
-Melhorar o modo que o sonar est· posicionado, fazendo com que possa ficar num ‚ngulo de 90∫ em relaÁ„o ‡ frente, permitindo que possa olhar diretamente ‡ esquerda ou ‡ direita.
+Melhorar o modo que o sonar est√° posicionado, fazendo com que possa ficar num √¢ngulo de 90¬∫ em rela√ß√£o √† frente, permitindo que possa olhar diretamente √† esquerda ou √† direita.
 
 27 Fevereiro 2018 18:17
-Autor: Dhiego.  - O que foi feito Mais manutenÁ„o na estrutura do robÙ. Agora devido ‡ minha insatisfaÁ„o do sonar acabar posicionado muito a frente, o que poderia nos atrapalhar mais ainda noo futuro. A tarde foi cheia de monta-desmonta, mas valeu a pena, agora temos um modelo que possibilita a montagem do sonar mais para tr·s.
+Autor: Dhiego.  - O que foi feito Mais manuten√ß√£o na estrutura do rob√¥. Agora devido √† minha insatisfa√ß√£o do sonar acabar posicionado muito a frente, o que poderia nos atrapalhar mais ainda noo futuro. A tarde foi cheia de monta-desmonta, mas valeu a pena, agora temos um modelo que possibilita a montagem do sonar mais para tr√°s.
 - A fazer
-Acabar de juntar o sonar ‡ estrutura do robÙ.
+Acabar de juntar o sonar √† estrutura do rob√¥.
 
 28 Fevereiro 2018 18:20
 Autor: Dhiego.
 - O que foi feito
-Sonar estabelecido na frente do robÙ. Foi notado que este, devido ‡ estrutura do robÙ, fica pendente para a frente, junto com a frente do robÙ, o que È um problema ainda a ser investigado.
-Devo salientar que hoje o prof. Henrique chegou com os cartıes SD, ent„o j· podemos programar o robÙ em linguagem textual (Python).
+Sonar estabelecido na frente do rob√¥. Foi notado que este, devido √† estrutura do rob√¥, fica pendente para a frente, junto com a frente do rob√¥, o que √© um problema ainda a ser investigado.
+Devo salientar que hoje o prof. Henrique chegou com os cart√µes SD, ent√£o j√° podemos programar o rob√¥ em linguagem textual (Python).
 - A fazer
-Investigar esta inclinaÁ„o que acomete a frente do robÙ;
-Botar o EV3 DEV no robÙ, pra programar em linguagem textual.
+Investigar esta inclina√ß√£o que acomete a frente do rob√¥;
+Botar o EV3 DEV no rob√¥, pra programar em linguagem textual.
 
-1 MarÁo 2018 18:16
+1 Mar√ßo 2018 18:16
 Autor: Erike.
 
 -O que foi feito:
-	InstalaÁ„o do EV3 dev no brick. Sua implementaÁ„o faz-se necess·ria, a medida em que pretendemos compilar a linguagem de texto(Python) em nosso robÙ, atravÈs de um cart„o SD, onde È encontrada a "distro" que ir· executar ao ligamento do processador.
+	Instala√ß√£o do EV3 dev no brick. Sua implementa√ß√£o faz-se necess√°ria, a medida em que pretendemos compilar a linguagem de texto(Python) em nosso rob√¥, atrav√©s de um cart√£o SD, onde √© encontrada a "distro" que ir√° executar ao ligamento do processador.
 - A fazer:
-	Fazer um cÛdigo teste para rodar.
+	Fazer um c√≥digo teste para rodar.
 
-2 MarÁo 2018 19:18 
+2 Mar√ßo 2018 19:18 
 Autor: Erike
 - O que foi feito:
-	CriaÁ„o de um cÛdigo em programaÁ„o textual(Python);
-	Conex„o teste via ssh;
-	- Experimentando a aplicabilidade do Python no robÙ, fizemos um cÛdigo 'primitivo' que foi executado pelo terminal do linux via ssh, a fim de fazer upload remoto dos cÛdigos para execuÁ„o dos mesmos no processador do robÙ.
+	Cria√ß√£o de um c√≥digo em programa√ß√£o textual(Python);
+	Conex√£o teste via ssh;
+	- Experimentando a aplicabilidade do Python no rob√¥, fizemos um c√≥digo 'primitivo' que foi executado pelo terminal do linux via ssh, a fim de fazer upload remoto dos c√≥digos para execu√ß√£o dos mesmos no processador do rob√¥.
 - A fazer:
-	ComeÁar o desenvolvimento do cÛdigo "master" no python;
-	Analisar as possibilidades de uma potÍncia elevada, que ser· aplicada aos motores.
+	Come√ßar o desenvolvimento do c√≥digo "master" no python;
+	Analisar as possibilidades de uma pot√™ncia elevada, que ser√° aplicada aos motores.
 
-5 MarÁo 2018 19:21
+5 Mar√ßo 2018 19:21
 Autor: Erike.
 
 -O que foi feito:
-	CriaÁ„o do cÛdigo "seguir linha" em python, com lÛgica proporcional(P);
-	testes de valores predefinidos para o futuro funcionamento eficaz do robÙ;
-	- O cÛdigo para seguimento de linha, ainda est· em sua fase "primitiva" de desenvolvimento, n„o estando aplicado assim, o comando de curvas quando o sensor detectar a cor verde, por exemplo.
+	Cria√ß√£o do c√≥digo "seguir linha" em python, com l√≥gica proporcional(P);
+	testes de valores predefinidos para o futuro funcionamento eficaz do rob√¥;
+	- O c√≥digo para seguimento de linha, ainda est√° em sua fase "primitiva" de desenvolvimento, n√£o estando aplicado assim, o comando de curvas quando o sensor detectar a cor verde, por exemplo.
 -Problemas detectados:
-	 Procurando anular os valores do "erro" no cÛdigo, o robÙ tenta corrigir esses valores compensando a potencia no motor oposto ao erro. Contudo, a dist‚ncia interna entre os sensores faz com que esse erro seja muito corrigido.
+	 Procurando anular os valores do "erro" no c√≥digo, o rob√¥ tenta corrigir esses valores compensando a potencia no motor oposto ao erro. Contudo, a dist√¢ncia interna entre os sensores faz com que esse erro seja muito corrigido.
 
 - A fazer:
-	Diminuir a dist‚ncia entre os sensores;
-	Analisar o funcionamento do "P" no cÛdigo.
+	Diminuir a dist√¢ncia entre os sensores;
+	Analisar o funcionamento do "P" no c√≥digo.
 
-6 MarÁo 2018 17:32
+6 Mar√ßo 2018 17:32
 Autor: Erike.
 
 -O que foi feito:
-	ModificaÁ„o da estrutura fÌsica dos sensores;
-	Conex„o SFTP da IDE(Python) com o robÙ;
-	FunÁ„o de saturaÁ„o da potencia para os motores.
-	- Analisando o funcionamento dos sensores, concluimos que o fato dele corrigir muito estava sendo influenciado pela grande dist‚ncia entre os sensores, assim como a posiÁ„o em que se encontravam: No centro do corpo do robÙ. Dessa forma, refizemos a estrutura dos mesmos, diminuindo a dist‚ncia e elterando a posiÁ„o, colocando os sensores mais a frente da posiÁ„o atual;
-	- A conex„o SFTP permite-nos fazer upload do cÛdigo com o Pycharm para o processador do brick;
-	- A funÁ„o de saturaÁ„o, satura o valor do giro para n„o ultrapassar o valor m·ximo de potÍncia adicionada aos motores.
+	Modifica√ß√£o da estrutura f√≠sica dos sensores;
+	Conex√£o SFTP da IDE(Python) com o rob√¥;
+	Fun√ß√£o de satura√ß√£o da potencia para os motores.
+	- Analisando o funcionamento dos sensores, concluimos que o fato dele corrigir muito estava sendo influenciado pela grande dist√¢ncia entre os sensores, assim como a posi√ß√£o em que se encontravam: No centro do corpo do rob√¥. Dessa forma, refizemos a estrutura dos mesmos, diminuindo a dist√¢ncia e elterando a posi√ß√£o, colocando os sensores mais a frente da posi√ß√£o atual;
+	- A conex√£o SFTP permite-nos fazer upload do c√≥digo com o Pycharm para o processador do brick;
+	- A fun√ß√£o de satura√ß√£o, satura o valor do giro para n√£o ultrapassar o valor m√°ximo de pot√™ncia adicionada aos motores.
 - A fazer:
-	Aplicar o cÛdigo com a funÁ„o sat(), e analisar seu funcionamento;
-	Desenvolver partes do cÛdigo.
+	Aplicar o c√≥digo com a fun√ß√£o sat(), e analisar seu funcionamento;
+	Desenvolver partes do c√≥digo.
 
-7 MarÁo 2018 17:45
+7 Mar√ßo 2018 17:45
 Autor: Erike
 -O que foi feito:
-	An·lise do funcionamento do cÛdigo com "P";
-	Constantes ajustes nos valores do cÛdigo.
-	-Objetivando ter valores est·veis para a execuÁ„o do cÛdigo, colocamos o robÙ para no circuito de seguir linha, e alteramos os valores das vari·veis conforme o desempenho do mesmo na sua compilaÁ„o. ApÛs horas de testes, tivemos um Ûtimo resultado, porÈm, a correÁ„o dos erros encontrados pelos sensores durante o circuito sÛ se dava com uma velocidade baixa.
+	An√°lise do funcionamento do c√≥digo com "P";
+	Constantes ajustes nos valores do c√≥digo.
+	-Objetivando ter valores est√°veis para a execu√ß√£o do c√≥digo, colocamos o rob√¥ para no circuito de seguir linha, e alteramos os valores das vari√°veis conforme o desempenho do mesmo na sua compila√ß√£o. Ap√≥s horas de testes, tivemos um √≥timo resultado, por√©m, a corre√ß√£o dos erros encontrados pelos sensores durante o circuito s√≥ se dava com uma velocidade baixa.
 
 -A fazer:
-	Verificar quais os valores m·ximos que podem ser corrigidos pela vari·vel de correÁ„o.
+	Verificar quais os valores m√°ximos que podem ser corrigidos pela vari√°vel de corre√ß√£o.
 
- 8 MarÁo 2018 16:04
+ 8 Mar√ßo 2018 16:04
 Autor: Erike.
 
 -O que foi feito:
-	ModificaÁ„o da estrutura das esteiras;
+	Modifica√ß√£o da estrutura das esteiras;
 	Desenvolvimento incompleto da integral(I);
-	Testes do cÛdigo;
-	-A estrutura anterior da esteira È reta, o que acaba por fazer estralos ao ser girada. Dessa forma, refizemos com um formato triangular: Esticando e diminuindo estralos ao dar mais atrito;
-	-Foi desenvolvido partes da lÛgica "I" para ser utilizada;
-	-O teste do cÛdigo no estado atual do robÙ,que ir· para competiÁ„o, porÈm, deixou a desejar.
+	Testes do c√≥digo;
+	-A estrutura anterior da esteira √© reta, o que acaba por fazer estralos ao ser girada. Dessa forma, refizemos com um formato triangular: Esticando e diminuindo estralos ao dar mais atrito;
+	-Foi desenvolvido partes da l√≥gica "I" para ser utilizada;
+	-O teste do c√≥digo no estado atual do rob√¥,que ir√° para competi√ß√£o, por√©m, deixou a desejar.
 
 -A fazer: 
 	Descobrir o que ocasiona seu mal desempenho;
-	Testar cÛdigo com a integral
+	Testar c√≥digo com a integral
 
-9 MarÁo 2018 17:45
+9 Mar√ßo 2018 17:45
 Autor: Dhiego
 - O que foi feito
-	Nova esteira feita. Ela inclina o robÙ para tr·s um pouco, o que acaba com (ou pelo menos alivia, ainda falta teste) os problemas de inclinaÁ„o ressaltados no dia 28 de Fevereiro, aqui anotados. Apesar disso, esta n„o foi a raz„o para reconstruir a esteira, a raz„o foi de fato melhorar o funcionalidade da esteira do robÙ, reduzindo (ou acabando com, ainda falta teste com a programaÁ„o) os 'estalos' que ocorriam quando us·vamos calotas (?) feitas para uso com pneus e n„o com esteiras, inclusive, por causa disto acho que os 'estalos' ocorriam.
+	Nova esteira feita. Ela inclina o rob√¥ para tr√°s um pouco, o que acaba com (ou pelo menos alivia, ainda falta teste) os problemas de inclina√ß√£o ressaltados no dia 28 de Fevereiro, aqui anotados. Apesar disso, esta n√£o foi a raz√£o para reconstruir a esteira, a raz√£o foi de fato melhorar o funcionalidade da esteira do rob√¥, reduzindo (ou acabando com, ainda falta teste com a programa√ß√£o) os 'estalos' que ocorriam quando us√°vamos calotas (?) feitas para uso com pneus e n√£o com esteiras, inclusive, por causa disto acho que os 'estalos' ocorriam.
 
-27 MarÁo 2018 20:21
+27 Mar√ßo 2018 20:21
 Autor: Erike
 -O que foi feito:
-	Mais modificaÁıes na estrutura dos sensores;
-	- Isso se deu, pelo fato de sua posiÁ„o atual n„o estar alinhada ao eixo de giro do robÙ, o que dificulta a correÁ„o das linhas a serem seguidas. Acredito que esse seja o motivo para o mal desempenho na pista, em consonancia com o espaÁamento exagerado entre os sensores.
+	Mais modifica√ß√µes na estrutura dos sensores;
+	- Isso se deu, pelo fato de sua posi√ß√£o atual n√£o estar alinhada ao eixo de giro do rob√¥, o que dificulta a corre√ß√£o das linhas a serem seguidas. Acredito que esse seja o motivo para o mal desempenho na pista, em consonancia com o espa√ßamento exagerado entre os sensores.
 -A fazer:
 	Diminuir a distancia entre os sensores;
 
 5 Abril 2018 18:00
 	Autor: Dhiego
 	- O que foi feito
-		Chassi abandonado. Refizemos o robÙ por inteiro, aproveitando um pouco da esteira e toda a caixa de captura de bolas, que ainda ser· adaptada para o novo robÙ.
+		Chassi abandonado. Refizemos o rob√¥ por inteiro, aproveitando um pouco da esteira e toda a caixa de captura de bolas, que ainda ser√° adaptada para o novo rob√¥.
 
 24 Abril 2018 15:53
 	Autor: Dhiego
