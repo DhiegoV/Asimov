@@ -1,0 +1,27 @@
+
+Este arquivo descreve um algoritmo para a superação do obstáculo.
+----------
+funcao alinha:
+	anda pra trás (ou pra frente) x tanto;
+	loop até x chegar
+		se encontrar o sensor da direita encontrar a linha antes de encontrar x
+			robô tá direcionado pra direita do obstáculo;
+			gira z pra esquerda;
+		se o da esquerda encontrar
+			tá direcionado pra esquerda do obstáculo;
+			gira z pra direita;
+		se nenhum sensor encontrar a linha
+			o robô tá alinhado;
+			sai da funcao.
+
+detecta o obstáculo;
+alinha();
+gira 90° direita;
+anda n rotações;
+gira 90° esquerda;
+anda y rotações;
+gira 90° esquerda;
+anda n rotações;
+gira 90° direita;
+# obstáculo superado.
+
