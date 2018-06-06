@@ -16,8 +16,8 @@ arq_esq.close()
 
 KP = 0.5
 KI = 0
-KD = 0
-TP = 120
+KD = 0.023
+TP = 129
 
 def compensar_verde(momento):
 	"""Compensa andando para realizar o trajeto do verde corretamente."""
