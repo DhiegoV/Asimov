@@ -1,7 +1,7 @@
 
 Este arquivo descreve um algoritmo para a superação do obstáculo.
 ----------
-funcao alinha:
+funcao alinhav1:
 	anda pra trás (ou pra frente) x tanto;
 	loop até x chegar
 		se encontrar o sensor da direita encontrar a linha antes de encontrar x
@@ -13,6 +13,13 @@ funcao alinha:
 		se nenhum sensor encontrar a linha
 			o robô tá alinhado;
 			sai da funcao.
+
+funcao alinhav2:
+	se não tá alinhado
+		anda pra trás x tanto
+		chama o loop normal de PID
+		# o robô vai acabar encontrando o obstáculo de novo, só que agora,
+		# estando mais alinhado, já que andou com o PID um bocadinho
 
 detecta o obstáculo;
 alinha();
