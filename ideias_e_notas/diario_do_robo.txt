@@ -127,4 +127,9 @@ Autor: Erike
 	- O que foi feito
 		CodificaÁ„o do seguir linha, agora com valor de "KD" ajudando na correÁ„o;
 
+15 Maio 2018 15:32
+	Autor: Erike
+	- O que foi feito
+		Reajuste na estrutura das esteiras:
+			O estado anterior a este em que se encontram(as esteiras), a pouca ausencia de atrito com o ch√o da rampa n√o permitia ao robo subir com a rigidez esperada, a medida em que apenas as pontas encostavam a superf√cie, fruto da folga contida no meio do seu formato. Dessa forma, refizemos sua estrutura implementando uma engrenagem, dando um visual triangular que propicia mais atrito na rela√√o esteira-superf√cie.
 
