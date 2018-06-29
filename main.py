@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
+print("carregando bibliotecas")
 from ev3dev.ev3 import *
 from portas_modos import *
 from json import load
 from PID import PID
+print("carregamento completo")
 
 arq_dir = open("sensor_direita.json")
 direita = load(arq_dir)
@@ -14,10 +16,10 @@ arq_esq = open("sensor_esquerda.json")
 esquerda = load(arq_esq)
 arq_esq.close()
 
-KP = 0.5
+KP = 0.8 #0.5
 KI = 0
-KD = 0.023
-TP = 129
+KD = 0.004 #0.001
+TP = 180 #130
 
 def compensar_verde(momento):
 	"""Compensa andando para realizar o trajeto do verde corretamente."""
@@ -43,7 +45,7 @@ def girar(sentido):
 	# Direita é um valor positivo e esquerda é um valor negativo.
 	# Positivo = sentido horário.
 	# 90 graus p/ robo = 420 graus p/ motor.
-	quanto_rodar = 420
+	quanto_rodar = 400 #420
 
 	if sentido == 'esquerda':
 		dir.run_to_rel_pos(position_sp=-quanto_rodar, speed_sp=velocidade)
@@ -132,8 +134,23 @@ def get_valor_sensor_esquerda():
 
 	return valor
 
+def get_kp():
+	kp_file = open('kp', 'r')
+	kp = kp_file.readline()
+	kp_file.close()
+	return kp
+
+def get_kd():
+	kd_file = open('kd', 'r')
+	kd = kd_file.readline()
+	kd_file.close()
+	return kd
+
 def executar():
-	pid = PID(KP, KI, KD)
+	kp = float(get_kp())
+	kd = float(get_kd())
+
+	pid = PID(kp, 0, kd)
 	pid.SetPoint = 0
 	botao = Button()
 
