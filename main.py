@@ -16,9 +16,9 @@ arq_esq = open("sensor_esquerda.json")
 esquerda = load(arq_esq)
 arq_esq.close()
 
-KP = 0.8 #0.5
+KP = 0.5
 KI = 0
-KD = 0.004 #0.001
+KD = 0
 TP = 180 #130
 
 def compensar_verde(momento):
@@ -134,23 +134,8 @@ def get_valor_sensor_esquerda():
 
 	return valor
 
-def get_kp():
-	kp_file = open('kp', 'r')
-	kp = kp_file.readline()
-	kp_file.close()
-	return kp
-
-def get_kd():
-	kd_file = open('kd', 'r')
-	kd = kd_file.readline()
-	kd_file.close()
-	return kd
-
 def executar():
-	kp = float(get_kp())
-	kd = float(get_kd())
-
-	pid = PID(kp, 0, kd)
+	pid = PID(KP, KI, KD)
 	pid.SetPoint = 0
 	botao = Button()
 
