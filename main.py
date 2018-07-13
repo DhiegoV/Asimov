@@ -1,20 +1,28 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
-print("carregando bibliotecas")
+print("# carregando bibliotecas")
+print("ev3dev.ev3")
 from ev3dev.ev3 import *
+print("configuracao de portas e modos")
 from portas_modos import *
+print("json")
 from json import load
+print("PID")
 from PID import PID
-print("carregamento completo")
+print("# carregamento completo")
 
+print("# lendo arquivos de calibracao")
+print("direita")
 arq_dir = open("sensor_direita.json")
 direita = load(arq_dir)
 arq_dir.close()
 
+print("esquerda")
 arq_esq = open("sensor_esquerda.json")
 esquerda = load(arq_esq)
 arq_esq.close()
+print("# leitura finalizada")
 
 KP = 0.5
 KI = 0
