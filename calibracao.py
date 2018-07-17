@@ -53,6 +53,26 @@ print("brancos:")
 print("esq:", esquerda["branco"], "dir:", direita["branco"])
 esperar_botao()
 
+# VERDE
+# margem de erro para o intervalo do que eh verde em termos de reflectancia
+margem_de_erro = 5
+
+# direita
+print("direita -> verde")
+esperar_botao()
+
+verde = sensor_dir.value()
+direita["verde_min"] = verde - margem_de_erro
+direita["verde_max"] = verde + margem_de_erro
+
+# esquerda
+print("esquerda -> verde")
+esperar_botao()
+
+verde = sensor_esq.value()
+esquerda["verde_min"] = verde - margem_de_erro
+esquerda["verde_max"] = verde + margem_de_erro
+
 # SALVANDO
 arq_dir = open("sensor_direita.json", 'w')
 dump(direita, arq_dir)

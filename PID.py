@@ -28,7 +28,7 @@
 """Ivmech PID Controller is simple implementation of a Proportional-Integral-Derivative (PID) Controller in the Python Programming Language.
 More information about PID Controller: http://en.wikipedia.org/wiki/PID_controller
 """
-import time
+from time import time
 
 class PID:
     """PID Controller
@@ -41,7 +41,7 @@ class PID:
         self.Kd = D
 
         self.sample_time = 0.00
-        self.current_time = time.time()
+        self.current_time = time()
         self.last_time = self.current_time
 
         self.clear()
@@ -75,7 +75,7 @@ class PID:
         """
         error = self.SetPoint - feedback_value
 
-        self.current_time = time.time()
+        self.current_time = time()
         delta_time = self.current_time - self.last_time
         delta_error = error - self.last_error
 
