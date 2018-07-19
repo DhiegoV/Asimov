@@ -68,6 +68,32 @@ def girar(sentido):
 	else:
 		print('SENTIDO INFORMADO ERRONEAMENTE')
 
+def andar(distancia_rot, velocidade=100, sentido='frente'):
+    """Faça o robo andar com os parametros informados.
+
+    distancia_rot (float): distancia, dada em rotacoes;
+    velocidade (inteiro): em rotacoes/segundo;
+    sentido (string): 'frente' ou 'tras', case insensitive;
+    """
+
+    # O robo, montado como estah, vai pra frente com distancia negativa e pra
+    # tras com distancia positiva. O condicional abaixo faz com que ele sempre
+    # ande no sentido desejado.
+    if sentido.lower() == 'frente' and distancia_rot > 0:
+        distancia_rot *= -1
+    elif sentido.lower == 'tras' and distancia_rot < 0:
+        distancia_rot *= -1
+
+    # convertendo de rotacoes para o que o robo aceita, tacho counts
+    tacho_counts = dir.count_per_rot * distancia_rot
+
+    # bote pra andar
+    dir.run_to_rel_pos(position_sp=tacho_counts, speed_sp=velocidade)
+    esq.run_to_rel_pos(position_sp=tacho_counts, speed_sp=velocidade)
+
+    # espere acabar de andar
+    esq.wait_while('running')
+
 def confirme_verde():
 	"""Verifique se algum dos sensores vê verde e gire de acordo."""
 	modo_anterior = sensor_esq.mode
