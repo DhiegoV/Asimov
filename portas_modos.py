@@ -8,11 +8,11 @@ dir = LargeMotor('outB')
 #motor_garra = LargeMotor('outC')
 #motor_sensor = MediumMotor('outD')
 
-
 # SENSORES
 sensor_esq = ColorSensor(address=INPUT_1)
 sensor_dir = ColorSensor(address=INPUT_2)
-sonar = UltrasonicSensor(address=INPUT_3)
+sensor_frente = UltrasonicSensor(address=INPUT_3)
+sensor_lado = InfraredSensor('in4')
 
 sensor_esq.mode = 'COL-REFLECT'
 sensor_dir.mode = 'COL-REFLECT'

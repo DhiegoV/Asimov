@@ -10,6 +10,7 @@ print("json")
 from json import load
 print("PID")
 from PID import PID
+from time import sleep
 print("# carregamento completo")
 
 print("# lendo arquivos de calibracao")
@@ -93,6 +94,75 @@ def andar(distancia_rot, velocidade=100, sentido='frente'):
 
     # espere acabar de andar
     esq.wait_while('running')
+
+def tem_obstaculo_no_lado():
+    """Retorne (booleano) se o sensor do lado (sensor_lado) ve obstaculo."""
+
+    if sensor_lado.proximity < 20:
+        return True
+    else:
+        return False
+
+def andar_ate_deixar_de_ver_obstaculo():
+    """Nome autoexplicativo."""
+
+    # ande eternamente
+    dir.run_forever(speed_sp=-80)
+    esq.run_forever(speed_sp=-80)
+
+    # pare a execucao do codigo ate que obstaculo nao seja visto
+    while tem_obstaculo_no_lado():
+        pass
+
+    # pare de andar
+    dir.stop()
+    esq.stop()
+
+def andar_ate_ver_obstaculo():
+    """Nome autoexplicativo."""
+
+    # ande eternamente
+    dir.run_forever(speed_sp=-80)
+    esq.run_forever(speed_sp=-80)
+
+    # pare a execucao do codigo ate que obstaculo seja visto
+    while not tem_obstaculo_no_lado():
+        pass
+
+    # pare de andar
+    dir.stop()
+    esq.stop()
+
+def ultrapassar_obstaculo():
+    """Ultrapasse o obstaculo usando o metodo do sensor de lado e em sua direcao."""
+
+    # distancia em rotacao pra compensar o final do robo
+    compensar_rot = 1.2
+
+    # distancia em rotacao pra achar a linha no final
+    ate_linha_rot = 0.5
+
+    # 'antes' do obstaculo
+    girar('esquerda')
+    andar_ate_ver_obstaculo()
+    sleep(1)
+    andar_ate_deixar_de_ver_obstaculo()
+    andar(compensar_rot)
+    # 'do lado' do obstaculo
+    girar('direita')
+    andar_ate_ver_obstaculo()
+    sleep(1)
+    andar_ate_deixar_de_ver_obstaculo()
+    andar(compensar_rot)
+    girar('direita')
+    # vendo o 'depois do obstaculo'
+    andar_ate_ver_obstaculo()
+    andar(0.5)
+    andar_ate_deixar_de_ver_obstaculo()
+    andar(ate_linha_rot, sentido='tras')
+    girar('esquerda')
+
+ultrapassar_obstaculo()
 
 def confirme_verde():
 	"""Verifique se algum dos sensores vê verde e gire de acordo."""
@@ -191,5 +261,5 @@ def executar():
 	dir.stop()
 
 
-executar()
+#executar()
 
