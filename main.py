@@ -54,7 +54,7 @@ def girar(sentido):
 	# Direita é um valor positivo e esquerda é um valor negativo.
 	# Positivo = sentido horário.
 	# 90 graus p/ robo = 420 graus p/ motor.
-	quanto_rodar = 400 #420
+	quanto_rodar = 418 #420
 
 	if sentido == 'esquerda':
 		dir.run_to_rel_pos(position_sp=-quanto_rodar, speed_sp=velocidade)
@@ -137,7 +137,7 @@ def ultrapassar_obstaculo():
     """Ultrapasse o obstaculo usando o metodo do sensor de lado e em sua direcao."""
 
     # distancia em rotacao pra compensar o final do robo
-    compensar_rot = 1.2
+    compensar_rot = 1.4
 
     # distancia em rotacao pra achar a linha no final
     ate_linha_rot = 0.5
@@ -157,9 +157,8 @@ def ultrapassar_obstaculo():
     girar('direita')
     # vendo o 'depois do obstaculo'
     andar_ate_ver_obstaculo()
-    andar(0.5)
+    andar(0.7)
     andar_ate_deixar_de_ver_obstaculo()
-    andar(ate_linha_rot, sentido='tras')
     girar('esquerda')
 
 ultrapassar_obstaculo()
