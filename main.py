@@ -1,24 +1,33 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
-print("carregando bibliotecas")
+print("# carregando bibliotecas")
+print("ev3dev.ev3")
 from ev3dev.ev3 import *
+print("configuracao de portas e modos")
 from portas_modos import *
+print("json")
 from json import load
+print("PID")
 from PID import PID
-print("carregamento completo")
+from time import sleep
+print("# carregamento completo")
 
+print("# lendo arquivos de calibracao")
+print("direita")
 arq_dir = open("sensor_direita.json")
 direita = load(arq_dir)
 arq_dir.close()
 
+print("esquerda")
 arq_esq = open("sensor_esquerda.json")
 esquerda = load(arq_esq)
 arq_esq.close()
+print("# leitura finalizada")
 
 KP = 0.5
 KI = 0
-KD = 0
+KD = 0.008
 TP = 180 #130
 
 def compensar_verde(momento):
@@ -45,7 +54,7 @@ def girar(sentido):
 	# Direita é um valor positivo e esquerda é um valor negativo.
 	# Positivo = sentido horário.
 	# 90 graus p/ robo = 420 graus p/ motor.
-	quanto_rodar = 400 #420
+	quanto_rodar = 418 #420
 
 	if sentido == 'esquerda':
 		dir.run_to_rel_pos(position_sp=-quanto_rodar, speed_sp=velocidade)
@@ -59,6 +68,102 @@ def girar(sentido):
 
 	else:
 		print('SENTIDO INFORMADO ERRONEAMENTE')
+
+def andar(distancia_rot, velocidade=100, sentido='frente'):
+    """Faça o robo andar com os parametros informados.
+
+    distancia_rot (float): distancia, dada em rotacoes;
+    velocidade (inteiro): em rotacoes/segundo;
+    sentido (string): 'frente' ou 'tras', case insensitive;
+    """
+
+    # O robo, montado como estah, vai pra frente com distancia negativa e pra
+    # tras com distancia positiva. O condicional abaixo faz com que ele sempre
+    # ande no sentido desejado.
+    if sentido.lower() == 'frente' and distancia_rot > 0:
+        distancia_rot *= -1
+    elif sentido.lower == 'tras' and distancia_rot < 0:
+        distancia_rot *= -1
+
+    # convertendo de rotacoes para o que o robo aceita, tacho counts
+    tacho_counts = dir.count_per_rot * distancia_rot
+
+    # bote pra andar
+    dir.run_to_rel_pos(position_sp=tacho_counts, speed_sp=velocidade)
+    esq.run_to_rel_pos(position_sp=tacho_counts, speed_sp=velocidade)
+
+    # espere acabar de andar
+    esq.wait_while('running')
+
+def tem_obstaculo_no_lado():
+    """Retorne (booleano) se o sensor do lado (sensor_lado) ve obstaculo."""
+
+    if sensor_lado.proximity < 20:
+        return True
+    else:
+        return False
+
+def andar_ate_deixar_de_ver_obstaculo():
+    """Nome autoexplicativo."""
+
+    # ande eternamente
+    dir.run_forever(speed_sp=-80)
+    esq.run_forever(speed_sp=-80)
+
+    # pare a execucao do codigo ate que obstaculo nao seja visto
+    while tem_obstaculo_no_lado():
+        pass
+
+    # pare de andar
+    dir.stop()
+    esq.stop()
+
+def andar_ate_ver_obstaculo():
+    """Nome autoexplicativo."""
+
+    # ande eternamente
+    dir.run_forever(speed_sp=-80)
+    esq.run_forever(speed_sp=-80)
+
+    # pare a execucao do codigo ate que obstaculo seja visto
+    while not tem_obstaculo_no_lado():
+        pass
+
+    # pare de andar
+    dir.stop()
+    esq.stop()
+
+def ultrapassar_obstaculo():
+    """Ultrapasse o obstaculo usando o metodo do sensor de lado e em sua direcao."""
+
+    # distancia em rotacao pra compensar o final do robo
+    compensar_rot = 1.4
+
+    # distancia em rotacao pra achar a linha no final
+    ate_linha_rot = 0.5
+
+    # 'antes' do obstaculo
+    girar('esquerda')
+    andar_ate_ver_obstaculo()
+    sleep(1)
+    andar_ate_deixar_de_ver_obstaculo()
+    andar(compensar_rot)
+    # 'do lado' do obstaculo
+    girar('direita')
+    andar_ate_ver_obstaculo()
+    sleep(1)
+    andar_ate_deixar_de_ver_obstaculo()
+    andar(compensar_rot)
+    girar('direita')
+    # vendo o 'depois do obstaculo'
+    andar_ate_ver_obstaculo()
+    andar(0.7)
+    andar_ate_deixar_de_ver_obstaculo()
+    girar('esquerda')
+    '''
+    '''
+
+#ultrapassar_obstaculo()
 
 def confirme_verde():
 	"""Verifique se algum dos sensores vê verde e gire de acordo."""
@@ -142,6 +247,10 @@ def executar():
 	while not botao.any():
 		if parece_verde():
 			confirme_verde()
+
+		if sensor_frente.distance_centimeters < 10:
+			Sound.beep()
+			ultrapassar_obstaculo()
 
 		erro = get_valor_sensor_direita() - get_valor_sensor_esquerda()
 		pid.update(erro)
