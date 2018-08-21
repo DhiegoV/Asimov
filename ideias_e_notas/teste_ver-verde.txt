@@ -1,0 +1,16 @@
+#verifica se parece verde
+se confirme verde:
+	
+	#verificar se e verde pos preto
+	verifica_atras(quant_rotacao)
+	sensor_direita = get_valor_direita()
+	sensor_esquerda = get_valor_esquerda()
+	
+	#consulta valores dos sensores para faixa de reflectancia branca
+	if (sensor_direita in range(direitas["branco"]) and sensor_esquerda in range(esquerda["branco"])):
+		#E verde normal
+	else:
+		#E VERDE POS PRETO
+		#passa direto
+
+		
