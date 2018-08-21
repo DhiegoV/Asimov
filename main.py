@@ -159,7 +159,9 @@ def ultrapassar_obstaculo():
     andar_ate_ver_obstaculo()
     andar(0.7)
     andar_ate_deixar_de_ver_obstaculo()
+    andar(0.4, sentido='tras')
     girar('esquerda')
+    andar(0.3, sentido='tras')
     '''
     '''
 
