@@ -5,7 +5,7 @@ from ev3dev.ev3 import LargeMotor, ColorSensor, UltrasonicSensor, InfraredSensor
 # MOTORES
 esq = LargeMotor('outA')
 dir = LargeMotor('outB')
-#motor_garra = LargeMotor('outC')
+motor_garra = LargeMotor('outC')
 #motor_sensor = MediumMotor('outD')
 
 
