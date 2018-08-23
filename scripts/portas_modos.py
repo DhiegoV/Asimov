@@ -1,1 +1,0 @@
-../portas_modos.py
