@@ -172,24 +172,75 @@ def compensar_obstaculo():
 	esq.run_to_rel_pos(position_sp=quanto_andar, speed_sp = velocidade)
 	esq.wait_while('running')
 
+def atras_eh_branco_branco():
+	"""Retorne booleano se um pouco atras tem branco-branco.
+	
+	Porque ai se tiver branco-branco, temos um verde normal.
+	"""
+
+	quanto_andar_pra_tras = 0.3
+
+	andar(quanto_andar_pra_tras, sentido='tras')
+
+	# 6 eh a cor branca
+	if sensor_esq.value() == 6 and sensor_dir.value() == 6:
+		retorno = True
+	else:
+		retorno = False
+	
+	# compensar o que andou pra tras, pra nao ver o verde
+	# de novo e ficar num loop
+	andar(quanto_andar_pra_tras, sentido='frente')
+
+	return retorno
+
 def confirme_verde():
 	"""Verifique se algum dos sensores vê verde e gire de acordo."""
 	modo_anterior = sensor_esq.mode
 	sensor_esq.mode = 'COL-COLOR'
 	sensor_dir.mode = 'COL-COLOR'
 
-	# se o sensor vê verde, cor 3
-	if sensor_esq.value() == 3:
-		Sound.beep()
-		compensar_verde("antes")
+	# o quanto andar para ignorar um verde pos-preto
+	passar_direto_em_rot = 10
+
+	# 3 eh a cor verde
+	if sensor_esq.value() == 3 and sensor_dir.value() == 3:
+		# verde-verde, meia volta
+
 		girar('esquerda')
-		compensar_verde("depois")
+		girar('esquerda')
+	
+	elif sensor_esq.value() == 3:
+		# verde na esquerda
+
+		if atras_eh_branco_branco():
+			# verde normal
+
+			Sound.beep()
+			compensar_verde("antes")
+			girar('esquerda')
+			compensar_verde("depois")
+		else:
+			# verde pos-preto
+			Sound.beep().wait()
+			Sound.beep().wait()
+			andar(passar_direto_em_rot)
 
 	elif sensor_dir.value() == 3:
-		Sound.beep()
-		compensar_verde("antes")
-		girar('direita')
-		compensar_verde("depois")
+		# verde na direita
+
+		if atras_eh_branco_branco():
+			# verde normal
+
+			Sound.beep()
+			compensar_verde("antes")
+			girar('direita')
+			compensar_verde("depois")
+		else:
+			# verde pos-preto
+			Sound.beep().wait()
+			Sound.beep().wait()
+			andar(passar_direto_em_rot)
 
 	sensor_esq.mode = modo_anterior
 	sensor_dir.mode = modo_anterior

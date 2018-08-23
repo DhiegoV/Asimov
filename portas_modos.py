@@ -13,7 +13,7 @@ dir = LargeMotor('outB')
 sensor_esq = ColorSensor(address=INPUT_1)
 sensor_dir = ColorSensor(address=INPUT_2)
 sensor_frente = UltrasonicSensor(address=INPUT_3)
-sensor_lado = InfraredSensor('in4')
+sensor_lado = UltrasonicSensor(address=INPUT_4)
 
 
 sensor_esq.mode = 'COL-REFLECT'

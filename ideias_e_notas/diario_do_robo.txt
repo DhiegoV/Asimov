@@ -132,4 +132,43 @@ Autor: Erike
 	- O que foi feito
 		Reajuste na estrutura das esteiras:
 			O estado anterior a este em que se encontram(as esteiras), a pouca ausencia de atrito com o ch√o da rampa n√o permitia ao robo subir com a rigidez esperada, a medida em que apenas as pontas encostavam a superf√cie, fruto da folga contida no meio do seu formato. Dessa forma, refizemos sua estrutura implementando uma engrenagem, dando um visual triangular que propicia mais atrito na rela√√o esteira-superf√cie.
+18 Maio 2018 16:54
+	Autor: Erike
+	O que foi feito
+		Implementacao dos sensores ultrasonicos no robo, para desviar de obstaculos:
+			Com um sensor a frente e outro em um dos lados do robo, podemos contornar obstaculos e identificar vitimas na sala 3, 
+			conforme a logica proposta pela equipe para a competicao.
 
+20 Maio 2018 17:03
+	Autor: Erike
+	O que foi feito
+		Implementacao de funcoes que verificam varicao de verde, sendo esta limitada por um valor de verde minimo e maximo, respectivamente:
+			Isso servira para obter margens que se apresentem como possiveis verdes. 
+17 julho 2018 
+	Autor: Erike
+	O que foi feito
+		Incorporando logica "desviar obstaculo" a programacao:
+			Considerando os desafios propostos pela competicao, a equipe desenvolveu uma logica para atender a necessidade do robo
+			de desviar de obstaculos ao longo do seu percurso.
+
+		Problems encontrados: Ao passar pelo obstaculo, haveria a hipotese de se ter um gap(falha na linha) apos 10 cm do mesmo.
+		Solucao: O robo ira se basear no sensor lateral para desviar tranquilamente do problema em seu caminho e evitar esse possivel problema
+			apresentado acima.
+
+3 Agosto 2018 18:02
+	Autor: Erike
+	O que foi feito
+		Encontrado novos valores de correcao/velocidade para o robo no estado "sem a garra"
+
+20 Agosto 2018 15:27
+	Autor: Erike
+	 O que foi feito
+		Adicionado codigo para verde pos-preto:
+			Ao identificar valores que parecem preto, o robo verifica se esse verde referencia a uma curva normal ou beco sem saida.
+ 
+21 Agosto 2018 14:47
+	Autor: Erike
+	O que foi feito
+		Adicionando scripts para testar a garra:
+			Nesse processo, observa-se as estrategias para o possivel resgate de vitimas na sala 3, e como o robo se comportaria.
+ 
