@@ -174,6 +174,56 @@ def compensar_obstaculo():
 	esq.run_to_rel_pos(position_sp=quanto_andar, speed_sp = velocidade)
 	esq.wait_while('running')
 
+def parar():
+	"""Para os motores da esteira imediatamente."""
+
+	dir.stop()
+	esq.stop()
+
+def andar_pra_sempre():
+	"""Ande pra sempre pra frente.
+
+	Para parar, use parar().
+	"""
+
+	dir.run_forever()
+	esq.run_forever()
+
+def tem_linha_se_aproximando(amostras):
+	"""Retorne se ha pontos se aproximando continuamente.
+
+	Pois isso eh um receptor de bolas no final do outro lado da sala 3.
+	"""
+	
+
+def tem_linha_se_afastando(amostras):
+	"""Retorne se ha pontos se afastando continuamente.
+
+	Pois isso eh um receptor de bolas no comeco do outro lado da sala 3.
+	"""
+
+def rotina_sala_3():
+	"""Faca a sala 3.
+
+	Esta rotina eh ativada quando ja se sabe que se esta dentro da sala 3, no
+	pos-deteccao da silver tape.
+	"""
+
+	# (pressupondo que entramos pelo lado esquerdo)
+	
+	andar_pra_sempre()
+
+	amostras = []
+	while sensor_frente.distance_centimeters < 5:
+		amostras.append(sensor_lado.distance_centimeters)
+	
+	parar()
+
+	print(amostras)
+
+# pra teste
+#rotina_sala_3()
+
 def atras_eh_branco_branco():
 	"""Retorne booleano se um pouco atras tem branco-branco.
 	

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from ev3dev.ev3 import LargeMotor, ColorSensor, UltrasonicSensor, InfraredSensor, MediumMotor, INPUT_1, INPUT_2, INPUT_3
+from ev3dev.ev3 import LargeMotor, ColorSensor, UltrasonicSensor, InfraredSensor, MediumMotor, INPUT_1, INPUT_2, INPUT_3, INPUT_4
 
 # MOTORES
 esq = LargeMotor('outA')
