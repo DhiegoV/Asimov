@@ -203,7 +203,7 @@ def confirme_verde():
 	sensor_dir.mode = 'COL-COLOR'
 
 	# o quanto andar para ignorar um verde pos-preto
-	passar_direto_em_rot = 10
+	passar_direto_em_rot = 0.4
 
 	# 3 eh a cor verde
 	if sensor_esq.value() == 3 and sensor_dir.value() == 3:
