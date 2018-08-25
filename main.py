@@ -180,7 +180,7 @@ def atras_eh_branco_branco():
 	Porque ai se tiver branco-branco, temos um verde normal.
 	"""
 
-	quanto_andar_pra_tras = 0.3
+	quanto_andar_pra_tras = 0.18
 
 	andar(quanto_andar_pra_tras, sentido='tras')
 
