@@ -98,7 +98,7 @@ def andar(distancia_rot, velocidade=100, sentido='frente'):
 def tem_obstaculo_no_lado():
     """Retorne (booleano) se o sensor do lado (sensor_lado) ve obstaculo."""
 
-    if sensor_lado.proximity < 20:
+    if sensor_lado.distance_centimeters < 20:
         return True
     else:
         return False
