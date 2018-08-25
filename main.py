@@ -98,7 +98,7 @@ def andar(distancia_rot, velocidade=100, sentido='frente'):
 def tem_obstaculo_no_lado():
     """Retorne (booleano) se o sensor do lado (sensor_lado) ve obstaculo."""
 
-    if sensor_lado.proximity < 20:
+    if sensor_lado.distance_centimeters < 20:
         return True
     else:
         return False
@@ -230,7 +230,7 @@ def atras_eh_branco_branco():
 	Porque ai se tiver branco-branco, temos um verde normal.
 	"""
 
-	quanto_andar_pra_tras = 0.3
+	quanto_andar_pra_tras = 0.18
 
 	andar(quanto_andar_pra_tras, sentido='tras')
 
@@ -253,7 +253,7 @@ def confirme_verde():
 	sensor_dir.mode = 'COL-COLOR'
 
 	# o quanto andar para ignorar um verde pos-preto
-	passar_direto_em_rot = 10
+	passar_direto_em_rot = 0.4
 
 	# 3 eh a cor verde
 	if sensor_esq.value() == 3 and sensor_dir.value() == 3:
