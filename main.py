@@ -81,9 +81,9 @@ def andar(distancia_rot, velocidade=100, sentido='frente'):
 	# tras com distancia positiva. O condicional abaixo faz com que ele sempre
 	# ande no sentido desejado.
 	if sentido.lower() == 'frente' and distancia_rot > 0:
-	distancia_rot *= -1
+		distancia_rot *= -1
 	elif sentido.lower == 'tras' and distancia_rot < 0:
-	distancia_rot *= -1
+		distancia_rot *= -1
 
 	# convertendo de rotacoes para o que o robo aceita, tacho counts
 	tacho_counts = dir.count_per_rot * distancia_rot
@@ -99,9 +99,9 @@ def tem_obstaculo_no_lado():
 	"""Retorne (booleano) se o sensor do lado (sensor_lado) ve obstaculo."""
 
 	if sensor_lado.distance_centimeters < 20:
-	return True
+		return True
 	else:
-	return False
+		return False
 
 def andar_ate_deixar_de_ver_obstaculo():
 	"""Nome autoexplicativo."""
@@ -112,7 +112,7 @@ def andar_ate_deixar_de_ver_obstaculo():
 
 	# pare a execucao do codigo ate que obstaculo nao seja visto
 	while tem_obstaculo_no_lado():
-	pass
+		pass
 
 	# pare de andar
 	dir.stop()
@@ -127,7 +127,7 @@ def andar_ate_ver_obstaculo():
 
 	# pare a execucao do codigo ate que obstaculo seja visto
 	while not tem_obstaculo_no_lado():
-	pass
+		pass
 
 	# pare de andar
 	dir.stop()
