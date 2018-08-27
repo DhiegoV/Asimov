@@ -180,14 +180,25 @@ def parar():
 	dir.stop()
 	esq.stop()
 
-def andar_pra_sempre():
+def andar_pra_sempre(sentido='frente', velocidade=200):
 	"""Ande pra sempre pra frente.
 
 	Para parar, use parar().
 	"""
 
-	dir.run_forever()
-	esq.run_forever()
+	# O robo, montado como estah, vai pra frente com velocidade negativa e pra
+	# tras com velocidade positiva. O condicional abaixo faz com que ele sempre
+	# ande no sentido desejado.
+	if sentido.lower() == 'frente' and velocidade > 0:
+		velocidade *= -1
+	elif sentido.lower == 'tras' and velocidade < 0:
+		velocidade *= -1
+
+	dir.run_forever(speed_sp=velocidade)
+	esq.run_forever(speed_sp=velocidade)
+
+# pra teste
+#andar_pra_sempre(sentido='tras')
 
 def tem_linha_se_aproximando(amostras):
 	"""Retorne se ha pontos se aproximando continuamente.
