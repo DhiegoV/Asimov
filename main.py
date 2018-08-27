@@ -216,22 +216,17 @@ def tem_linha_se_afastando(amostras):
 def rotina_sala_3():
 	"""Faca a sala 3.
 
-	Esta rotina eh ativada quando ja se sabe que se esta dentro da sala 3, no
-	pos-deteccao da silver tape.
+	A partir do encontro com a parede oposta a rampa que garante que o robo ta
+	dento da sala 3, essa funcao assume o controle.
 	"""
 
-	# Pressupondo que entramos pelo lado esquerdo. Isto eh, o sensor de
-	# lado olha para o interior da sala 3.
-	
-	andar_pra_sempre()
+	andar_pra_sempre(sentido='tras')
 
-	amostras = []
-	while sensor_frente.distance_centimeters < 5:
-		amostras.append(sensor_lado.distance_centimeters)
+	while sensor_frente.distance_centimeters < 35:
+		pass
 	
 	parar()
-
-	print(amostras)
+	girar('esquerda')
 
 # pra teste
 #rotina_sala_3()
@@ -395,7 +390,7 @@ def executar():
 
 		if to_na_rampa == True and sensor_frente.distance_centimeters < 10:
 			# to no outro lado da sala 3
-			parar()
+			rotina_sala_3()
 
 		erro = get_valor_sensor_direita() - get_valor_sensor_esquerda()
 		pid.update(erro)
