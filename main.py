@@ -369,6 +369,8 @@ def executar():
 
 		certeza_rampa = 60
 		if achismos_rampa > certeza_rampa:
+			Sound.beep().wait()
+			Sound.beep().wait()
 			# to na rampa
 
 		erro = get_valor_sensor_direita() - get_valor_sensor_esquerda()
