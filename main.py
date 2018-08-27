@@ -355,23 +355,36 @@ def executar():
 	pid.SetPoint = 0
 	botao = Button()
 
+	achismos_rampa = 0
+	to_na_rampa = False
+
 	while not botao.any():
 		if parece_verde():
 			confirme_verde()
 
-		if sensor_frente.distance_centimeters < 10:
+		if to_na_rampa == False and sensor_frente.distance_centimeters < 10:
+			# ATENCAO! A condicao acima impede que depois de to_na_rampa ser
+			# True, o robo faca obstaculo!  Ou seja, se der falha de progresso
+			# na rampa e o ultimo marcador tiver antes de um obstaculo, o robo,
+			# quando encontrar esse obstaculo, ele nao sera ultrapassado.  Ou
+			# seja: O ULTIMO MARCADOR NAO PODE ESTAR ANTES DE ALGUM OBSTACULO
+
 			Sound.beep()
 			ultrapassar_obstaculo()
 
-		achismos_rampa = 0
-		if sensor_lado.distance_centimeters < 20:
+		if to_na_rampa == False and sensor_lado.distance_centimeters < 20:
 			achismos_rampa += 1
+			print('achismos_rampa:', achismos_rampa)
 
 		certeza_rampa = 60
-		if achismos_rampa > certeza_rampa:
+		if to_na_rampa == False and achismos_rampa > certeza_rampa:
+			to_na_rampa = True
 			Sound.beep().wait()
 			Sound.beep().wait()
-			# to na rampa
+
+		if to_na_rampa == True and sensor_frente.distance_centimeters < 10:
+			# to no outro lado da sala 3
+			parar()
 
 		erro = get_valor_sensor_direita() - get_valor_sensor_esquerda()
 		pid.update(erro)
