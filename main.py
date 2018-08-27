@@ -70,100 +70,100 @@ def girar(sentido):
 		print('SENTIDO INFORMADO ERRONEAMENTE')
 
 def andar(distancia_rot, velocidade=100, sentido='frente'):
-    """Faça o robo andar com os parametros informados.
+	"""Faça o robo andar com os parametros informados.
 
-    distancia_rot (float): distancia, dada em rotacoes;
-    velocidade (inteiro): em rotacoes/segundo;
-    sentido (string): 'frente' ou 'tras', case insensitive;
-    """
+	distancia_rot (float): distancia, dada em rotacoes;
+	velocidade (inteiro): em rotacoes/segundo;
+	sentido (string): 'frente' ou 'tras', case insensitive;
+	"""
 
-    # O robo, montado como estah, vai pra frente com distancia negativa e pra
-    # tras com distancia positiva. O condicional abaixo faz com que ele sempre
-    # ande no sentido desejado.
-    if sentido.lower() == 'frente' and distancia_rot > 0:
-        distancia_rot *= -1
-    elif sentido.lower == 'tras' and distancia_rot < 0:
-        distancia_rot *= -1
+	# O robo, montado como estah, vai pra frente com distancia negativa e pra
+	# tras com distancia positiva. O condicional abaixo faz com que ele sempre
+	# ande no sentido desejado.
+	if sentido.lower() == 'frente' and distancia_rot > 0:
+	distancia_rot *= -1
+	elif sentido.lower == 'tras' and distancia_rot < 0:
+	distancia_rot *= -1
 
-    # convertendo de rotacoes para o que o robo aceita, tacho counts
-    tacho_counts = dir.count_per_rot * distancia_rot
+	# convertendo de rotacoes para o que o robo aceita, tacho counts
+	tacho_counts = dir.count_per_rot * distancia_rot
 
-    # bote pra andar
-    dir.run_to_rel_pos(position_sp=tacho_counts, speed_sp=velocidade)
-    esq.run_to_rel_pos(position_sp=tacho_counts, speed_sp=velocidade)
+	# bote pra andar
+	dir.run_to_rel_pos(position_sp=tacho_counts, speed_sp=velocidade)
+	esq.run_to_rel_pos(position_sp=tacho_counts, speed_sp=velocidade)
 
-    # espere acabar de andar
-    esq.wait_while('running')
+	# espere acabar de andar
+	esq.wait_while('running')
 
 def tem_obstaculo_no_lado():
-    """Retorne (booleano) se o sensor do lado (sensor_lado) ve obstaculo."""
+	"""Retorne (booleano) se o sensor do lado (sensor_lado) ve obstaculo."""
 
-    if sensor_lado.distance_centimeters < 20:
-        return True
-    else:
-        return False
+	if sensor_lado.distance_centimeters < 20:
+	return True
+	else:
+	return False
 
 def andar_ate_deixar_de_ver_obstaculo():
-    """Nome autoexplicativo."""
+	"""Nome autoexplicativo."""
 
-    # ande eternamente
-    dir.run_forever(speed_sp=-80)
-    esq.run_forever(speed_sp=-80)
+	# ande eternamente
+	dir.run_forever(speed_sp=-80)
+	esq.run_forever(speed_sp=-80)
 
-    # pare a execucao do codigo ate que obstaculo nao seja visto
-    while tem_obstaculo_no_lado():
-        pass
+	# pare a execucao do codigo ate que obstaculo nao seja visto
+	while tem_obstaculo_no_lado():
+	pass
 
-    # pare de andar
-    dir.stop()
-    esq.stop()
+	# pare de andar
+	dir.stop()
+	esq.stop()
 
 def andar_ate_ver_obstaculo():
-    """Nome autoexplicativo."""
+	"""Nome autoexplicativo."""
 
-    # ande eternamente
-    dir.run_forever(speed_sp=-80)
-    esq.run_forever(speed_sp=-80)
+	# ande eternamente
+	dir.run_forever(speed_sp=-80)
+	esq.run_forever(speed_sp=-80)
 
-    # pare a execucao do codigo ate que obstaculo seja visto
-    while not tem_obstaculo_no_lado():
-        pass
+	# pare a execucao do codigo ate que obstaculo seja visto
+	while not tem_obstaculo_no_lado():
+	pass
 
-    # pare de andar
-    dir.stop()
-    esq.stop()
+	# pare de andar
+	dir.stop()
+	esq.stop()
 
 def ultrapassar_obstaculo():
-    """Ultrapasse o obstaculo usando o metodo do sensor de lado e em sua direcao."""
+	"""Ultrapasse o obstaculo usando o metodo do sensor de lado e em sua direcao."""
 
-    # distancia em rotacao pra compensar o final do robo
-    compensar_rot = 1.4
+	# distancia em rotacao pra compensar o final do robo
+	compensar_rot = 1.4
 
-    # distancia em rotacao pra achar a linha no final
-    ate_linha_rot = 0.5
+	# distancia em rotacao pra achar a linha no final
+	ate_linha_rot = 0.5
 
-    # 'antes' do obstaculo
-    girar('esquerda')
-    andar_ate_ver_obstaculo()
-    sleep(1)
-    andar_ate_deixar_de_ver_obstaculo()
-    andar(compensar_rot)
-    # 'do lado' do obstaculo
-    girar('direita')
-    andar_ate_ver_obstaculo()
-    sleep(1)
-    andar_ate_deixar_de_ver_obstaculo()
-    andar(compensar_rot)
-    girar('direita')
-    # vendo o 'depois do obstaculo'
-    andar_ate_ver_obstaculo()
-    andar(0.7)
-    andar_ate_deixar_de_ver_obstaculo()
-    andar(0.4, sentido='tras')
-    girar('esquerda')
-    andar(0.3, sentido='tras')
-    '''
-    '''
+	# 'antes' do obstaculo
+	girar('esquerda')
+	andar_ate_ver_obstaculo()
+	sleep(1)
+	andar_ate_deixar_de_ver_obstaculo()
+	andar(compensar_rot)
+	# 'do lado' do obstaculo
+	girar('direita')
+	andar_ate_ver_obstaculo()
+	sleep(1)
+	andar_ate_deixar_de_ver_obstaculo()
+	andar(compensar_rot)
+	girar('direita')
+	# vendo o 'depois do obstaculo'
+	andar_ate_ver_obstaculo()
+	andar(0.7)
+	andar_ate_deixar_de_ver_obstaculo()
+	andar(0.4, sentido='tras')
+	girar('esquerda')
+	andar(0.3, sentido='tras')
+	'''
+	'''
 
 #ultrapassar_obstaculo()
 
@@ -209,7 +209,8 @@ def rotina_sala_3():
 	pos-deteccao da silver tape.
 	"""
 
-	# (pressupondo que entramos pelo lado esquerdo)
+	# Pressupondo que entramos pelo lado esquerdo. Isto eh, o sensor de
+	# lado olha para o interior da sala 3.
 	
 	andar_pra_sempre()
 
