@@ -363,19 +363,19 @@ def executar():
 			Sound.beep()
 			ultrapassar_obstaculo()
 
-		quando_achismos_viram_certeza = 20
-
 		achismos_sensor_lado = 0
 		if sensor_lado.distance_centimeters < 20:
 			achismos_sensor_lado += 1
 
-			# se o sensor de lado achar que o robo estah dentro da rampa o suficiente e
-			# se o da frente ver a parede do outro lado da sala3
-			if achismos_sensor_lado > quando_achismos_viram_certeza and sensor_frente.distance_centimeters in range(70, 100):
-				Sound.beep().wait()
-				Sound.beep().wait()
-				Sound.beep().wait()
-				rotina_sala_3()
+		quando_achismos_viram_certeza = 60
+
+		# se o sensor de lado achar que o robo estah dentro da rampa o suficiente e
+		# se o da frente ver a parede do outro lado da sala3
+		if achismos_sensor_lado > quando_achismos_viram_certeza and sensor_frente.distance_centimeters in range(70, 100):
+			Sound.beep().wait()
+			Sound.beep().wait()
+			Sound.beep().wait()
+			rotina_sala_3()
 
 		erro = get_valor_sensor_direita() - get_valor_sensor_esquerda()
 		pid.update(erro)
