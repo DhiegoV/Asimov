@@ -46,28 +46,28 @@ def compensar_verde(momento):
 	esq.wait_while('running')
 
 
-def girar(sentido):
-	"""Gire o robô no próprio eixo 90 graus no dado sentido."""
+def girar(sentido, giro=360, velocidade=300):
+	"""Gire o robo no proprio eixo o tanto informado em `giro` no dado sentido.
 
-	velocidade = 400
+	Por padrao, gire 90 graus no dado sentido.
+	"""
 
-	# Direita é um valor positivo e esquerda é um valor negativo.
-	# Positivo = sentido horário.
-	# 90 graus p/ robo = 420 graus p/ motor.
-	quanto_rodar = 418 #420
-
-	if sentido == 'esquerda':
-		dir.run_to_rel_pos(position_sp=-quanto_rodar, speed_sp=velocidade)
-		esq.run_to_rel_pos(position_sp=quanto_rodar, speed_sp=velocidade)
-		esq.wait_while('running')
-
-	elif sentido == 'direita':
-		dir.run_to_rel_pos(position_sp=quanto_rodar, speed_sp=velocidade)
-		esq.run_to_rel_pos(position_sp=-quanto_rodar, speed_sp=velocidade)
-		esq.wait_while('running')
-
+	if sentido == 'esquerda' and giro < 0:
+		giro *= -1
+	elif sentido == 'direita' and giro > 0:
+		giro *= -1
 	else:
-		print('SENTIDO INFORMADO ERRONEAMENTE')
+		print('sentido nao informado ao chamar girar()')
+
+	# com giro positivo, isso abaixo gira pra esquerda
+	dir.run_to_rel_pos(position_sp=-giro, speed_sp=velocidade)
+	esq.run_to_rel_pos(position_sp=giro, speed_sp=velocidade)
+
+	# espera ate acabar
+	esq.wait_while('running')
+
+# pra teste
+girar('direita', 180)
 
 def andar(distancia_rot, velocidade=100, sentido='frente'):
     """Faça o robo andar com os parametros informados.
