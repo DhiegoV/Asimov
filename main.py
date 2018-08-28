@@ -265,6 +265,7 @@ def rotina_sala_3():
 		print('opa, receptor NAO tava na minha frente')
 
 	parar()
+	sleep(5)
 
 # pra teste
 #rotina_sala_3()
