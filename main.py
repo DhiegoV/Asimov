@@ -49,25 +49,28 @@ def compensar_verde(momento):
 def girar(sentido):
 	"""Gire o robo no proprio eixo 90 graus no dado sentido."""
 
-	velocidade = 400
+	velocidade = 300
 
 	# Direita eh um valor positivo e esquerda eh um valor negativo
 	# Positivo = sentido horario.
-	# 90 graus p/ robo = 420 graus p/ motor.
-	quanto_rodar = 418 #420
+	# noventa_graus pra o robo
+	noventa_graus = 360
 
 	if sentido == 'esquerda':
-		dir.run_to_rel_pos(position_sp=-quanto_rodar, speed_sp=velocidade)
-		esq.run_to_rel_pos(position_sp=quanto_rodar, speed_sp=velocidade)
+		dir.run_to_rel_pos(position_sp=-noventa_graus, speed_sp=velocidade)
+		esq.run_to_rel_pos(position_sp=noventa_graus, speed_sp=velocidade)
 		esq.wait_while('running')
 
 	elif sentido == 'direita':
-		dir.run_to_rel_pos(position_sp=quanto_rodar, speed_sp=velocidade)
-		esq.run_to_rel_pos(position_sp=-quanto_rodar, speed_sp=velocidade)
+		dir.run_to_rel_pos(position_sp=noventa_graus, speed_sp=velocidade)
+		esq.run_to_rel_pos(position_sp=-noventa_graus, speed_sp=velocidade)
 		esq.wait_while('running')
 
 	else:
 		print('SENTIDO INFORMADO ERRONEAMENTE')
+
+# pra teste
+#girar('direita')
 
 def andar(distancia_rot, velocidade=100, sentido='frente'):
 	"""Faca o robo andar com os parametros informados.
