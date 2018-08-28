@@ -220,6 +220,38 @@ def tem_linha_se_afastando(amostras):
 	Pois isso eh um receptor de bolas no comeco do outro lado da sala 3.
 	"""
 
+def tem_receptor_na_minha_frente():
+	"""Retorne booleano se ha o receptor de vitimas na minha frente.
+
+	Essa funcao deve ser executada quando um provavel receptor estiver na
+	frente do robo, isto eh, quando o robo estiver de frente para algum dos
+	cantos.
+
+	A logica eh:
+	Se tiver o receptor na minha frente, quando eu andar pro meio da pista, vou
+	ver um vazio. No entanto, se eu nao tiver vendo o receptor, quando olhar
+	pro lado a partir do meio, vou ver a parede da sala imediatamente do meu
+	lado.
+	"""
+
+	girar('esquerda')
+
+	# andar ate mais ou menos o meio
+	andar(2)
+	parar()
+	sleep(0.2)
+
+	# olhar pro lado
+	lado = sensor_lado.distance_centimeters
+
+	# se tiver mais que 20 cm no lado, eu tava na frente dum receptor
+	if lado > 20:
+		tava_na_minha_frente = True
+	else:
+		tava_na_minha_frente = False
+
+	return tava_na_minha_frente
+
 def rotina_sala_3():
 	"""Faca a sala 3.
 
@@ -227,13 +259,12 @@ def rotina_sala_3():
 	dento da sala 3, essa funcao assume o controle.
 	"""
 
-	andar_pra_sempre(sentido='tras')
+	if tem_receptor_na_minha_frente():
+		print('opa, receptor tava na minha frente')
+	else:
+		print('opa, receptor NAO tava na minha frente')
 
-	while sensor_frente.distance_centimeters < 35:
-		pass
-	
 	parar()
-	girar('esquerda')
 
 # pra teste
 #rotina_sala_3()
