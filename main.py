@@ -252,6 +252,38 @@ def tem_receptor_na_minha_frente():
 
 	return tava_na_minha_frente
 
+def pegar_bola():
+	andar(2)
+
+def procurar_bola():
+	"""Realize o caminho de procura de bolas.
+
+	Esta funcao deve ser chamada logo depois do robo perceber que viu o
+	receptor de vitimas.
+	"""
+
+	# voltar pra frente do receptor
+	andar(2, sentido='tras')
+
+	# se colocar em posicao de procura
+	girar('esquerda')
+
+	# pra ter uma orientacao
+	amostra_atual = sensor_lado.distance_centimeters
+
+	# comecar a procurar
+	andar(3, esperar_acabar=False)
+
+	while esq.is_running:
+		amostra_anterior = amostra_atual
+		amostra_atual = sensor_lado.distance_centimeters
+
+		if (amostra_anterior - amostra_atual) > 10:
+			# opa, discrepancia grande
+
+			girar('direita')
+			pegar_bola()
+
 def rotina_sala_3():
 	"""Faca a sala 3.
 
@@ -261,6 +293,7 @@ def rotina_sala_3():
 
 	if tem_receptor_na_minha_frente():
 		print('opa, receptor tava na minha frente')
+		procurar_bola()
 	else:
 		print('opa, receptor NAO tava na minha frente')
 
