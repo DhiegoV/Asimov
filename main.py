@@ -48,7 +48,7 @@ def compensar_verde(momento):
 
 def girar(sentido, giro=360, velocidade=300):
 	"""Gire o robo no proprio eixo o tanto informado em `giro` no dado sentido.
-
+	
 	Por padrao, gire 90 graus no dado sentido.
 	"""
 
@@ -56,8 +56,6 @@ def girar(sentido, giro=360, velocidade=300):
 		giro *= -1
 	elif sentido == 'direita' and giro > 0:
 		giro *= -1
-	else:
-		print('sentido nao informado ao chamar girar()')
 
 	# com giro positivo, isso abaixo gira pra esquerda
 	dir.run_to_rel_pos(position_sp=-giro, speed_sp=velocidade)
@@ -67,7 +65,7 @@ def girar(sentido, giro=360, velocidade=300):
 	esq.wait_while('running')
 
 # pra teste
-girar('direita', 180)
+#girar('direita', 180)
 
 def andar(distancia_rot, velocidade=100, sentido='frente', esperar_acabar=True):
 	"""Faca o robo andar com os parametros informados.
@@ -249,8 +247,43 @@ def tem_receptor_na_minha_frente():
 
 	return tava_na_minha_frente
 
+def andar_ate_bola():
+	"""Anda em direcao a uma possivel bola, parando quando acha que ve."""
+
+	andar_pra_sempre()
+
+	while sensor_frente.distance_centimeters > 10:
+		pass
+	
+	parar()
+	sleep(2)
+
+def abaixar_garra():
+	"""Abaixe a garra."""
+
+	# potencia por dois segundos
+	motor_garra.run_timed(time_sp=3000, speed_sp=300)
+
+	# espere acabar de baixar a garra
+	motor_garra.wait_while('running')
+
+	# da uma rezinha pra garantir que uma bola meia boca entra
+	andar(0.5, sentido='tras')
+	# compensar a rezinha
+	andar(0.5)
+
 def pegar_bola():
-	andar(2)
+	"""Articule a garra pra capturar uma bola na frente."""
+
+	andar(0.5, sentido='tras')
+
+	# dar meia volta
+	girar('esquerda')
+	girar('esquerda')
+
+	andar(0.6, sentido='tras')
+
+	abaixar_garra()
 
 def procurar_bola():
 	"""Realize o caminho de procura de bolas.
@@ -275,11 +308,25 @@ def procurar_bola():
 		amostra_anterior = amostra_atual
 		amostra_atual = sensor_lado.distance_centimeters
 
-		if (amostra_anterior - amostra_atual) > 10:
+		if (amostra_anterior - amostra_atual) > 15:
 			# opa, discrepancia grande
 
+			quando_parei = esq.position
+			print('BOLA!')
+			Sound.beep()
 			girar('direita')
+			andar_ate_bola()
 			pegar_bola()
+			andar_ate_proximo_canto()
+			girar('direita')
+
+def andar_ate_proximo_canto():
+	"""Anda ate o sensor_frente ver menos que 10."""
+
+	andar_pra_sempre()
+
+	while sensor_frente.distance_centimeters > 10:
+		pass
 
 def rotina_sala_3():
 	"""Faca a sala 3.
@@ -289,10 +336,33 @@ def rotina_sala_3():
 	"""
 
 	if tem_receptor_na_minha_frente():
+		Sound.beep().wait()
+		Sound.beep().wait()
 		print('opa, receptor tava na minha frente')
 		procurar_bola()
+
 	else:
 		print('opa, receptor NAO tava na minha frente')
+		andar_ate_proximo_canto()
+
+		if tem_receptor_na_minha_frente():
+			Sound.beep().wait()
+			Sound.beep().wait()
+			print('opa, receptor tava na minha frente')
+			procurar_bola()
+
+		else:
+			print('opa, receptor NAO tava na minha frente')
+			andar_ate_proximo_canto()
+
+			if tem_receptor_na_minha_frente():
+				Sound.beep().wait()
+				Sound.beep().wait()
+				print('opa, receptor tava na minha frente')
+				procurar_bola()
+
+			else:
+				print('opa, receptor NAO tava na minha frente')
 
 	parar()
 	sleep(5)
@@ -425,6 +495,27 @@ def get_valor_sensor_esquerda():
 
 	return valor
 
+def seguir_parede():
+	"""Ande rente a parede da direita ate que encontre algo na frente, usando o sensor de lado."""
+
+	andar_pra_sempre()
+
+	while sensor_frente.distance_centimeters > 10:
+		andar_pra_sempre()
+		sleep(0.4)
+
+		lado = sensor_lado.distance_centimeters
+		distancia = 6
+		if lado < distancia:
+			girar('esquerda', 10)
+		else:
+			girar('direita', 10)
+
+	parar()
+
+# pra testar
+#seguir_parede()
+
 def executar():
 	pid = PID(KP, KI, KD)
 	pid.SetPoint = 0
@@ -456,6 +547,7 @@ def executar():
 			to_na_rampa = True
 			Sound.beep().wait()
 			Sound.beep().wait()
+			parar()
 
 		if to_na_rampa == True and sensor_frente.distance_centimeters < 10:
 			# to no outro lado da sala 3
