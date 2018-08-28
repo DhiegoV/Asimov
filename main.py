@@ -33,7 +33,7 @@ TP = 180 #130
 def compensar_verde(momento):
 	"""Compensa andando para realizar o trajeto do verde corretamente."""
 
-	# momento é em relação ao verde
+	# momento eh em relacao ao verde
 	if momento == 'antes':
 		quanto_andar = 160
 		vel_ajuste = 80
@@ -47,12 +47,12 @@ def compensar_verde(momento):
 
 
 def girar(sentido):
-	"""Gire o robô no próprio eixo 90 graus no dado sentido."""
+	"""Gire o robo no proprio eixo 90 graus no dado sentido."""
 
 	velocidade = 400
 
-	# Direita é um valor positivo e esquerda é um valor negativo.
-	# Positivo = sentido horário.
+	# Direita eh um valor positivo e esquerda eh um valor negativo
+	# Positivo = sentido horario.
 	# 90 graus p/ robo = 420 graus p/ motor.
 	quanto_rodar = 418 #420
 
@@ -70,7 +70,7 @@ def girar(sentido):
 		print('SENTIDO INFORMADO ERRONEAMENTE')
 
 def andar(distancia_rot, velocidade=100, sentido='frente'):
-	"""Faça o robo andar com os parametros informados.
+	"""Faca o robo andar com os parametros informados.
 
 	distancia_rot (float): distancia, dada em rotacoes;
 	velocidade (inteiro): em rotacoes/segundo;
@@ -254,7 +254,7 @@ def atras_eh_branco_branco():
 	return retorno
 
 def confirme_verde():
-	"""Verifique se algum dos sensores vê verde e gire de acordo."""
+	"""Verifique se algum dos sensores ve verde e gire de acordo."""
 	modo_anterior = sensor_esq.mode
 	sensor_esq.mode = 'COL-COLOR'
 	sensor_dir.mode = 'COL-COLOR'
@@ -306,9 +306,9 @@ def confirme_verde():
 
 def parece_verde():
 	"""
-	Verifique se o valor de reflectância atual parece com o de reflectância de verde.
+	Verifique se o valor de reflectancia atual parece com o de reflectancia de verde.
 	
-	Retorna um booleano True se sim, False senão.
+	Retorna um booleano True se sim, False senao.
 	"""
 
 	if sensor_dir.value() in range(direita["verde_min"], direita["verde_max"]):
@@ -320,7 +320,7 @@ def parece_verde():
 
 def sat(giro):
 	"""
-	Satura o valor do giro para não ultrapassar o valor máximo do motor.
+	Satura o valor do giro para nao ultrapassar o valor maximo do motor.
 	:para giro: KP*erro +ou- TP
 	:return: O valor do giro saturado
 	"""
