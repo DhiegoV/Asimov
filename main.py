@@ -72,7 +72,7 @@ def girar(sentido):
 # pra teste
 #girar('direita')
 
-def andar(distancia_rot, velocidade=100, sentido='frente'):
+def andar(distancia_rot, velocidade=100, sentido='frente', esperar_acabar=True):
 	"""Faca o robo andar com os parametros informados.
 
 	distancia_rot (float): distancia, dada em rotacoes;
@@ -96,7 +96,11 @@ def andar(distancia_rot, velocidade=100, sentido='frente'):
 	esq.run_to_rel_pos(position_sp=tacho_counts, speed_sp=velocidade)
 
 	# espere acabar de andar
-	esq.wait_while('running')
+	if esperar_acabar == True:
+		esq.wait_while('running')
+
+# pra testar
+#andar(0.5, esperar_acabar=False)
 
 def tem_obstaculo_no_lado():
 	"""Retorne (booleano) se o sensor do lado (sensor_lado) ve obstaculo."""
