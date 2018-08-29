@@ -302,6 +302,35 @@ def get_valor_sensor_esquerda():
 
 	return valor
 
+def get_valor_sensor(lado):
+	"""Retorne o valor do sensor do `lado` convertido para a escala de 0-1000.
+	
+	Parametro:
+	`lado` eh 'direita' ou 'esquerda', case insensitive.
+	"""
+
+	if lado.lower() == 'direita':
+		valor = (
+			(direita["branco"] - sensor_dir.value()) /
+			(direita["branco"] - direita["preto"])
+		) * -1000 + 1000
+
+	elif lado.lower() == 'esquerda':
+		valor = (
+			(esquerda["branco"] - sensor_esq.value()) /
+			(esquerda["branco"] - esquerda["preto"])
+		) * -1000 + 1000
+	
+	return valor
+
+# pra teste
+'''
+while True:
+	sleep(0.5)
+	print('get_valor_sensor("direita"):', get_valor_sensor("direita"))
+	print('get_valor_sensor_direita:', get_valor_sensor_direita())
+'''
+
 def executar():
 	pid = PID(KP, KI, KD)
 	pid.SetPoint = 0
@@ -316,7 +345,7 @@ def executar():
 			print('\n -- VI OBSTACULO! -- \n')
 			ultrapassar_obstaculo()
 
-		erro = get_valor_sensor_direita() - get_valor_sensor_esquerda()
+		erro = get_valor_sensor('direita') - get_valor_sensor('esquerda')
 		pid.update(erro)
 		correcao = pid.output
 
