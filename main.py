@@ -272,6 +272,14 @@ def abaixar_garra():
 	# compensar a rezinha
 	andar(0.5)
 
+def levantar_garra():
+	"""Levante a garra e pare-a no ar, catapultando as bolas pra fora."""
+
+	motor_garra.run_to_rel_pos(position_sp=-150, speed_sp=300, stop_action='hold')
+
+# pra testar
+#levantar_garra()
+
 def pegar_bola():
 	"""Articule a garra pra capturar uma bola na frente."""
 
@@ -311,14 +319,15 @@ def procurar_bola():
 		if (amostra_anterior - amostra_atual) > 15:
 			# opa, discrepancia grande
 
-			quando_parei = esq.position
 			print('BOLA!')
 			Sound.beep()
 			girar('direita')
 			andar_ate_bola()
 			pegar_bola()
 			andar_ate_proximo_canto()
-			girar('direita')
+			girar('esquerda')
+			andar_ate_proximo_canto()
+			levantar_garra()
 
 def andar_ate_proximo_canto():
 	"""Anda ate o sensor_frente ver menos que 10."""
