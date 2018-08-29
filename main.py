@@ -25,7 +25,7 @@ esquerda = load(arq_esq)
 arq_esq.close()
 print("# leitura finalizada")
 
-KP = 0.5
+KP = 0.6
 KI = 0
 KD = 0.008
 TP = 180 #130
@@ -35,7 +35,7 @@ def compensar_verde(momento):
 
 	# momento eh em relacao ao verde
 	if momento == 'antes':
-		quanto_andar = 160
+		quanto_andar = 220
 		vel_ajuste = 80
 	else:
 		quanto_andar = 50
@@ -46,7 +46,7 @@ def compensar_verde(momento):
 	esq.wait_while('running')
 
 
-def girar(sentido, giro=360, velocidade=300):
+def girar(sentido, giro=350, velocidade=300):
 	"""Gire o robo no proprio eixo o tanto informado em `giro` no dado sentido.
 	
 	Por padrao, gire 90 graus no dado sentido.
@@ -100,7 +100,7 @@ def andar(distancia_rot, velocidade=100, sentido='frente', esperar_acabar=True):
 def tem_obstaculo_no_lado():
 	"""Retorne (booleano) se o sensor do lado (sensor_lado) ve obstaculo."""
 
-	if sensor_lado.distance_centimeters < 20:
+	if sensor_lado.distance_centimeters < 30:
 		return True
 	else:
 		return False
