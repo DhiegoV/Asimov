@@ -25,7 +25,7 @@ esquerda = load(arq_esq)
 arq_esq.close()
 print("# leitura finalizada")
 
-KP = 0.5
+KP = 0.58
 KI = 0
 KD = 0.008
 TP = 180 #130
