@@ -80,7 +80,7 @@ def andar(distancia_rot, velocidade=100, sentido='frente'):
     # ande no sentido desejado.
     if sentido.lower() == 'frente' and distancia_rot > 0:
         distancia_rot *= -1
-    elif sentido.lower == 'tras' and distancia_rot < 0:
+    elif sentido.lower() == 'tras' and distancia_rot < 0:
         distancia_rot *= -1
 
     # convertendo de rotacoes para o que o robo aceita, tacho counts
