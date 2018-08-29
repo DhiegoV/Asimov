@@ -114,6 +114,8 @@ def andar_ate_deixar_de_ver_obstaculo():
     while tem_obstaculo_no_lado():
         pass
 
+    print('nao vejo mais obstaculo')
+
     # pare de andar
     dir.stop()
     esq.stop()
@@ -127,7 +129,10 @@ def andar_ate_ver_obstaculo():
 
     # pare a execucao do codigo ate que obstaculo seja visto
     while not tem_obstaculo_no_lado():
+        sleep(0.1)
         pass
+
+    print('vi obstaculo do lado')
 
     # pare de andar
     dir.stop()
@@ -137,7 +142,7 @@ def ultrapassar_obstaculo():
     """Ultrapasse o obstaculo usando o metodo do sensor de lado e em sua direcao."""
 
     # distancia em rotacao pra compensar o final do robo
-    compensar_rot = 1.4
+    compensar_rot = 0.3
 
     # distancia em rotacao pra achar a linha no final
     ate_linha_rot = 0.5
@@ -161,7 +166,7 @@ def ultrapassar_obstaculo():
     andar_ate_deixar_de_ver_obstaculo()
     andar(0.4, sentido='tras')
     girar('esquerda')
-    andar(0.3, sentido='tras')
+    andar(0.5, sentido='tras')
     '''
     '''
 
@@ -308,8 +313,9 @@ def executar():
 		if parece_verde():
 			confirme_verde()
 
-		if sensor_frente.distance_centimeters < 10:
+		if sensor_frente.distance_centimeters < 5:
 			Sound.beep()
+			print('\n -- VI OBSTACULO! -- \n')
 			ultrapassar_obstaculo()
 
 		erro = get_valor_sensor_direita() - get_valor_sensor_esquerda()
