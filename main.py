@@ -56,8 +56,6 @@ def girar(sentido, giro=360, velocidade=300):
 		giro *= -1
 	elif sentido == 'direita' and giro > 0:
 		giro *= -1
-	else:
-		print('sentido nao informado ao chamar girar()')
 
 	# com giro positivo, isso abaixo gira pra esquerda
 	dir.run_to_rel_pos(position_sp=-giro, speed_sp=velocidade)
@@ -67,7 +65,7 @@ def girar(sentido, giro=360, velocidade=300):
 	esq.wait_while('running')
 
 # pra teste
-girar('direita', 180)
+#girar('direita', 180)
 
 def andar(distancia_rot, velocidade=100, sentido='frente'):
     """Faça o robo andar com os parametros informados.
