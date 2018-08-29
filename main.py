@@ -145,6 +145,32 @@ def ultrapassar_obstaculo():
     # distancia em rotacao pra achar a linha no final
     ate_linha_rot = 0.5
 
+	# PELA DIREITA
+
+    # 'antes' do obstaculo
+    girar('direita')
+    andar_ate_ver_obstaculo()
+    sleep(1)
+    andar_ate_deixar_de_ver_obstaculo()
+    andar(compensar_rot)
+    # 'do lado' do obstaculo
+    girar('esquerda')
+    andar_ate_ver_obstaculo()
+    sleep(1)
+    andar_ate_deixar_de_ver_obstaculo()
+    andar(compensar_rot)
+    girar('esquerda')
+    # vendo o 'depois do obstaculo'
+    andar_ate_ver_obstaculo()
+    andar(0.7)
+    andar_ate_deixar_de_ver_obstaculo()
+    andar(0.4, sentido='tras')
+    girar('direita')
+    andar(0.5, sentido='tras')
+	
+    '''
+	# PELA ESQUERDA
+
     # 'antes' do obstaculo
     girar('esquerda')
     andar_ate_ver_obstaculo()
@@ -165,7 +191,6 @@ def ultrapassar_obstaculo():
     andar(0.4, sentido='tras')
     girar('esquerda')
     andar(0.5, sentido='tras')
-    '''
     '''
 
 #ultrapassar_obstaculo()
