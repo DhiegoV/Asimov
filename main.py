@@ -567,6 +567,20 @@ def executar():
 			Sound.beep().wait()
 			parar()
 
+		if to_na_rampa == True and sensor_lado.distance_centimeters > 30:
+			# caso o sensor_lado esteja vendo muito, ele nao ve parede, logo,
+			# entramos pelo lado oposto a ele, pois ele ve o meio da sala 3
+
+			# anda pra nao girar e encontrar a parede na cara
+			andar(0.5)
+
+			# gira pra andar rente a parede
+			girar(lado_sensor_lado)
+
+			# anda pra nao ver a entrada da sala 3 com o sensor de lado e girar
+			# de novo
+			andar(1.8)
+
 		if to_na_rampa == True and sensor_frente.distance_centimeters < 10:
 			# to vendo uma possibilidade de receptor
 			rotina_sala_3()
