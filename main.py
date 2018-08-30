@@ -228,7 +228,8 @@ def tem_receptor_na_minha_frente():
 	imediatamente do meu lado.
 	"""
 
-	girar('esquerda')
+	# o lado abaixo tem que ser contrario ao que o sensor do lado estah
+	girar('direita')
 
 	# andar ate mais ou menos o meio
 	andar(2)
@@ -303,7 +304,8 @@ def procurar_bola():
 	andar(2, sentido='tras')
 
 	# se colocar em posicao de procura
-	girar('esquerda')
+	# o lado abaixo tem que ser contrario ao que o sensor do lado estah
+	girar('direita')
 
 	# pra ter uma orientacao
 	amostra_atual = sensor_lado.distance_centimeters
@@ -320,11 +322,13 @@ def procurar_bola():
 
 			print('BOLA!')
 			Sound.beep()
-			girar('direita')
+			# o lado abaixo tem que ser o lado que o sensor estah
+			girar('esquerda')
 			andar_ate_bola()
 			pegar_bola()
 			andar_ate_proximo_canto()
-			girar('esquerda')
+			# o lado abaixo tem que ser contrario ao que o sensor do lado estah
+			girar('direita')
 			andar_ate_proximo_canto()
 			levantar_garra()
 
