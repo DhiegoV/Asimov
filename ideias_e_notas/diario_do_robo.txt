@@ -172,3 +172,15 @@ Autor: Erike
 		Adicionando scripts para testar a garra:
 			Nesse processo, observa-se as estrategias para o possivel resgate de vitimas na sala 3, e como o robo se comportaria.
  
+22 de Agosto 2018 16:23
+	Autor: Erike
+	O que foi feito
+		Comeco da programacao da sala3 para resgate de vitimas:
+			Com uma estrategia bolada pela equipe inteira, esta foi transcrita a um algoritmo de
+			 facil entendimento para enfim passar ao codigo 'bruto'.
+24 Agosto 2018 18:45
+	Autor: Erike
+	O que foi feito:
+		Otimizacao do codigo "verde-preto":
+			Foram ajustados valores de compensacao quando "vendo verde", visto que a compensacao
+			de valores anteriores, nao estava satisfazendo. 
