@@ -30,6 +30,18 @@ KI = 0
 KD = 0.008
 TP = 180 #130
 
+# lado do sensor de lado, isso vai definir por onde o robo vai ultrapassar o
+# obstaculo e as direcoes que ele vai tomar quando dentro da sala 3, na busca
+# de vitimas, por exemplo
+lado_sensor_lado = 'esquerda'
+
+# pra se orientar na sala 3 em funcao do lado que o sensor estah, deve-se
+# definir o lado que o sensor nao estah tambem
+if lado_sensor_lado == 'esquerda':
+	lado_contrario_sensor_lado = 'direita'
+elif lado_sensor_lado == 'direita':
+	lado_contrario_sensor_lado = 'esquerda'
+
 def compensar_verde(momento):
 	"""Compensa andando para realizar o trajeto do verde corretamente."""
 
@@ -144,53 +156,26 @@ def ultrapassar_obstaculo():
 	# distancia em rotacao pra achar a linha no final
 	ate_linha_rot = 0.5
 
-	# PELA DIREITA
-
 	# 'antes' do obstaculo
-	girar('direita')
+	girar(lado_contrario_sensor_lado)
 	andar_ate_ver_obstaculo()
 	sleep(1)
 	andar_ate_deixar_de_ver_obstaculo()
 	andar(compensar_rot)
 	# 'do lado' do obstaculo
-	girar('esquerda')
+	girar(lado_sensor_lado)
 	andar_ate_ver_obstaculo()
 	sleep(1)
 	andar_ate_deixar_de_ver_obstaculo()
 	andar(compensar_rot)
-	girar('esquerda')
+	girar(lado_sensor_lado)
 	# vendo o 'depois do obstaculo'
 	andar_ate_ver_obstaculo()
 	andar(0.7)
 	andar_ate_deixar_de_ver_obstaculo()
 	andar(0.4, sentido='tras')
-	girar('direita')
+	girar(lado_contrario_sensor_lado)
 	andar(0.5, sentido='tras')
-
-	'''
-	# PELA ESQUERDA
-
-	# 'antes' do obstaculo
-	girar('esquerda')
-	andar_ate_ver_obstaculo()
-	sleep(1)
-	andar_ate_deixar_de_ver_obstaculo()
-	andar(compensar_rot)
-	# 'do lado' do obstaculo
-	girar('direita')
-	andar_ate_ver_obstaculo()
-	sleep(1)
-	andar_ate_deixar_de_ver_obstaculo()
-	andar(compensar_rot)
-	girar('direita')
-	# vendo o 'depois do obstaculo'
-	andar_ate_ver_obstaculo()
-	andar(0.7)
-	andar_ate_deixar_de_ver_obstaculo()
-	andar(0.4, sentido='tras')
-	girar('esquerda')
-	andar(0.5, sentido='tras')
-	'''
 
 #ultrapassar_obstaculo()
 
@@ -253,8 +238,7 @@ def tem_receptor_na_minha_frente():
 	imediatamente do meu lado.
 	"""
 
-	# o lado abaixo tem que ser contrario ao que o sensor do lado estah
-	girar('direita')
+	girar(lado_contrario_sensor_lado)
 
 	# andar ate mais ou menos o meio
 	andar(2)
@@ -329,8 +313,7 @@ def procurar_bola():
 	andar(2, sentido='tras')
 
 	# se colocar em posicao de procura
-	# o lado abaixo tem que ser contrario ao que o sensor do lado estah
-	girar('direita')
+	girar(lado_contrario_sensor_lado)
 
 	# pra ter uma orientacao
 	amostra_atual = sensor_lado.distance_centimeters
@@ -347,13 +330,11 @@ def procurar_bola():
 
 			print('BOLA!')
 			Sound.beep()
-			# o lado abaixo tem que ser o lado que o sensor estah
-			girar('esquerda')
+			girar(lado_sensor_lado)
 			andar_ate_bola()
 			pegar_bola()
 			andar_ate_proximo_canto()
-			# o lado abaixo tem que ser contrario ao que o sensor do lado estah
-			girar('direita')
+			girar(lado_contrario_sensor_lado)
 			andar_ate_proximo_canto()
 			levantar_garra()
 
