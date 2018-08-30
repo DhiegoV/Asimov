@@ -568,7 +568,7 @@ def executar():
 			parar()
 
 		if to_na_rampa == True and sensor_frente.distance_centimeters < 10:
-			# to no outro lado da sala 3
+			# to vendo uma possibilidade de receptor
 			rotina_sala_3()
 
 		erro = get_valor_sensor_direita() - get_valor_sensor_esquerda()
