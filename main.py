@@ -224,6 +224,25 @@ def atras_eh_branco_branco():
 
 	return retorno
 
+def atras_eh_preto_preto():
+	"""O mesmo de atras_eh_branco_branco, mas ve se eh preto preto."""
+
+	quanto_andar_pra_tras = 0.18
+
+	andar(quanto_andar_pra_tras, sentido='tras')
+
+	# 1 eh a cor preta
+	if sensor_esq.value() == 1 and sensor_dir.value() == 1:
+		retorno = True
+	else:
+		retorno = False
+	
+	# compensar o que andou pra tras, pra nao ver o verde
+	# de novo e ficar num loop
+	andar(quanto_andar_pra_tras, sentido='frente')
+
+	return retorno
+
 def get_valor_sensor(lado):
 	"""Retorne o valor do sensor do `lado` convertido para a escala de 0-1000.
 	
@@ -323,6 +342,13 @@ def confirme_verde():
 	elif sensor_esq.value() == 3:
 		# verde na esquerda
 
+		''' pra rodada 3, que nao tem verde pos-preto pos-encrizilhada
+		# esse elif fica abaixo do proximo if
+		elif atras_eh_preto_preto():
+			# opa, encruzilhada
+			andar(0.4)
+		'''
+
 		if atras_eh_branco_branco():
 			# verde normal
 
@@ -343,6 +369,13 @@ def confirme_verde():
 
 	elif sensor_dir.value() == 3:
 		# verde na direita
+
+		''' pra rodada 3, que nao tem verde pos-preto pos-encrizilhada
+		# esse elif fica abaixo do proximo if
+		elif atras_eh_preto_preto():
+			# opa, encruzilhada
+			andar(0.4)
+		'''
 
 		if atras_eh_branco_branco():
 			# verde normal
