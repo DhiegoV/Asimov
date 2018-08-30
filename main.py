@@ -222,11 +222,10 @@ def tem_receptor_na_minha_frente():
 	frente do robo, isto eh, quando o robo estiver de frente para algum dos
 	cantos.
 
-	A logica eh:
-	Se tiver o receptor na minha frente, quando eu andar pro meio da pista, vou
-	ver um vazio. No entanto, se eu nao tiver vendo o receptor, quando olhar
-	pro lado a partir do meio, vou ver a parede da sala imediatamente do meu
-	lado.
+	A logica eh: Se tiver o receptor na minha frente, quando eu andar pro meio
+	da pista, vou ver um vazio no lado. No entanto, se eu nao tiver vendo o
+	receptor, quando olhar pro lado a partir do meio, vou ver a parede da sala
+	imediatamente do meu lado.
 	"""
 
 	girar('esquerda')
