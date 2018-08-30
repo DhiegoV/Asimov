@@ -333,7 +333,13 @@ def confirme_verde():
 
 
 		else:
-			verde_pos_preto()
+			#verde_pos_preto()
+
+			andar(0.3)
+			# se viu um verde pos-preto na direita, ele pode andar demais pra
+			# longe da linha, isso faz ele se reorientar
+			# se a gente ver um verde pos-preto numa encruzilhada, o pid ajusta
+			girar('esquerda', 140)
 
 	elif sensor_dir.value() == 3:
 		# verde na direita
@@ -347,7 +353,9 @@ def confirme_verde():
 			compensar_verde("depois")
 
 		else:
-			verde_pos_preto()
+			#verde_pos_preto()
+			andar(0.3)
+			girar('direita', 140)
 
 	sensor_esq.mode = modo_anterior
 	sensor_dir.mode = modo_anterior
