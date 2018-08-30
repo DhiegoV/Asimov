@@ -279,14 +279,39 @@ def procurar_linha_girando(lado, sensor):
 # pra testar
 #procurar_linha_girando(lado='esquerda', sensor='direita')
 
+def verde_pos_preto():
+	"""Resolve um verde pos-preto.
+
+	Note que esta funcao NAO DETECTA um verde pos-preto; eh executada quando ja
+	se sabe que esta em cima dum verde pos-preto.
+	"""
+
+	# o quanto andar para ignorar um verde pos-preto
+	passar_direto_em_rot = 0.4
+
+	Sound.beep().wait()
+	Sound.beep().wait()
+	print('\n -- VERDE POS-PRETO -- \n')
+
+	print('andando um pouco')
+	andar(passar_direto_em_rot)
+
+	# pra alinhar-se com a linha
+	## esqueca a linha
+	girar('direita', 60)
+	## procurar a linha
+	procurar_linha_girando(lado='esquerda', sensor='esquerda')
+
+	## alinhar com a linha
+	procurar_linha_girando(lado='esquerda', sensor='direita')
+
+	print('acho que to alinhado')
+
 def confirme_verde():
 	"""Verifique se algum dos sensores vê verde e gire de acordo."""
 	modo_anterior = sensor_esq.mode
 	sensor_esq.mode = 'COL-COLOR'
 	sensor_dir.mode = 'COL-COLOR'
-
-	# o quanto andar para ignorar um verde pos-preto
-	passar_direto_em_rot = 0.4
 
 	# 3 eh a cor verde
 	if sensor_esq.value() == 3 and sensor_dir.value() == 3:
@@ -305,11 +330,10 @@ def confirme_verde():
 			compensar_verde("antes")
 			girar('esquerda')
 			compensar_verde("depois")
+
+
 		else:
-			# verde pos-preto
-			Sound.beep().wait()
-			Sound.beep().wait()
-			andar(passar_direto_em_rot)
+			verde_pos_preto()
 
 	elif sensor_dir.value() == 3:
 		# verde na direita
@@ -321,11 +345,9 @@ def confirme_verde():
 			compensar_verde("antes")
 			girar('direita')
 			compensar_verde("depois")
+
 		else:
-			# verde pos-preto
-			Sound.beep().wait()
-			Sound.beep().wait()
-			andar(passar_direto_em_rot)
+			verde_pos_preto()
 
 	sensor_esq.mode = modo_anterior
 	sensor_dir.mode = modo_anterior
