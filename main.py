@@ -224,6 +224,61 @@ def atras_eh_branco_branco():
 
 	return retorno
 
+def get_valor_sensor(lado):
+	"""Retorne o valor do sensor do `lado` convertido para a escala de 0-1000.
+	
+	Parametro:
+	`lado` eh 'direita' ou 'esquerda', case insensitive.
+	"""
+
+	if lado.lower() == 'direita':
+		valor = (
+			(direita["branco"] - sensor_dir.value()) /
+			(direita["branco"] - direita["preto"])
+		) * -1000 + 1000
+
+	elif lado.lower() == 'esquerda':
+		valor = (
+			(esquerda["branco"] - sensor_esq.value()) /
+			(esquerda["branco"] - esquerda["preto"])
+		) * -1000 + 1000
+	
+	return valor
+
+# pra teste
+'''
+while True:
+	sleep(0.5)
+	print('get_valor_sensor("direita"):', get_valor_sensor("direita"))
+
+	#print('get_valor_sensor_direita:', get_valor_sensor_direita())
+'''
+
+def procurar_linha_girando(lado, sensor):
+	"""Procura a linha no `lado` girando pro `lado` utilizando o sensor da `sensor` de reflectancia.
+	
+	Parametros:
+	`lado` eh 'direita' ou 'esquerda', case insensitive;
+	`sensor` eh 'direita' ou 'esquerda', case insensitive.
+	"""
+
+	# quanto girar pra corrigir um pouco
+	giro = 10
+
+	# o quanto, em reflectancia de 0-1000, eh preto
+	preto_em_reflectancia = 400
+
+	# enquanto o sensor da `sensor` nao ver linha em `lado`
+	while get_valor_sensor(sensor) > preto_em_reflectancia:
+		print('get_valor_sensor(', sensor, ')', get_valor_sensor(sensor))
+		girar(lado, 10)
+		sleep(0.1)
+
+	print('opa, sensor da', sensor, 'viu a linha na', lado)
+
+# pra testar
+#procurar_linha_girando(lado='esquerda', sensor='direita')
+
 def confirme_verde():
 	"""Verifique se algum dos sensores vê verde e gire de acordo."""
 	modo_anterior = sensor_esq.mode
@@ -326,35 +381,6 @@ def get_valor_sensor_esquerda():
 	) * -1000 + 1000
 
 	return valor
-
-def get_valor_sensor(lado):
-	"""Retorne o valor do sensor do `lado` convertido para a escala de 0-1000.
-	
-	Parametro:
-	`lado` eh 'direita' ou 'esquerda', case insensitive.
-	"""
-
-	if lado.lower() == 'direita':
-		valor = (
-			(direita["branco"] - sensor_dir.value()) /
-			(direita["branco"] - direita["preto"])
-		) * -1000 + 1000
-
-	elif lado.lower() == 'esquerda':
-		valor = (
-			(esquerda["branco"] - sensor_esq.value()) /
-			(esquerda["branco"] - esquerda["preto"])
-		) * -1000 + 1000
-	
-	return valor
-
-# pra teste
-'''
-while True:
-	sleep(0.5)
-	print('get_valor_sensor("direita"):', get_valor_sensor("direita"))
-	print('get_valor_sensor_direita:', get_valor_sensor_direita())
-'''
 
 def executar():
 	pid = PID(KP, KI, KD)
