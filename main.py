@@ -559,6 +559,11 @@ def seguir_parede():
 # pra testar
 #seguir_parede()
 
+def relaxar_garra():
+	"""Solte forca da garra."""
+
+	motor_garra.stop(stop_action='coast')
+
 def executar():
 	pid = PID(KP, KI, KD)
 	pid.SetPoint = 0
@@ -566,6 +571,8 @@ def executar():
 
 	achismos_rampa = 0
 	to_na_rampa = False
+
+	relaxar_garra()
 
 	while not botao.any():
 		if parece_verde():
