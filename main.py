@@ -383,9 +383,26 @@ def andar_ate_proximo_canto():
 def rotina_sala_3():
 	"""Faca a sala 3.
 
-	A partir do encontro com a parede oposta a rampa que garante que o robo ta
-	dento da sala 3, essa funcao assume o controle.
+	A partir do inicio da sala 3, logo apos a deteccao da silver tape, essa
+	funcao assume.
 	"""
+
+	# coloque-se inteiro na sala 3
+	andar(1.4)
+
+	# sobre que lado entramos na sala 3
+	if sensor_lado.distance_centimeters > 30:
+		# se o sensor_lado ve muito, ele olha pro meio, entramos pelo lado
+		# oposto a ele na sala 3
+
+		# gira pra andar rente a parede
+		girar(lado_sensor_lado)
+
+		# anda pra nao ver a entrada da sala 3 com o sensor de lado e girar
+		# de novo
+		andar(2)
+
+	andar_ate_proximo_canto()
 
 	if tem_receptor_na_minha_frente():
 		Sound.beep().wait()
@@ -626,24 +643,6 @@ def executar():
 			Sound.beep().wait()
 			parar()
 
-		if to_na_rampa == True and sensor_lado.distance_centimeters > 30:
-			# caso o sensor_lado esteja vendo muito, ele nao ve parede, logo,
-			# entramos pelo lado oposto a ele, pois ele ve o meio da sala 3
-
-			# anda pra nao girar e encontrar a parede na cara
-			andar(0.5)
-
-			# gira pra andar rente a parede
-			girar(lado_sensor_lado)
-
-			# anda pra nao ver a entrada da sala 3 com o sensor de lado e girar
-			# de novo
-			andar(1.8)
-
-		if to_na_rampa == True and sensor_frente.distance_centimeters < 10:
-			# to vendo uma possibilidade de receptor
-			rotina_sala_3()
-
 		if to_na_rampa == True and vejo_silver_tape():
 			parar()
 			Sound.beep().wait()
@@ -653,7 +652,7 @@ def executar():
 			Sound.beep().wait()
 			# Sound.play('../gemidao_do_zap.wav')
 			print('\n -- TO NA SALA 3 -- \n')
-			sleep(10)
+			rotina_sala_3()
 
 		erro = get_valor_sensor_direita() - get_valor_sensor_esquerda()
 		pid.update(erro)
