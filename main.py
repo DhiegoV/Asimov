@@ -284,6 +284,8 @@ def tem_receptor_na_minha_frente():
 def andar_ate_bola():
 	"""Anda em direcao a uma possivel bola, parando quando acha que ve."""
 
+	print('to indo pra bola')
+
 	andar_pra_sempre()
 
 	while sensor_frente.distance_centimeters > 10:
@@ -317,6 +319,8 @@ def levantar_garra():
 def pegar_bola():
 	"""Articule a garra pra capturar uma bola na frente."""
 
+	print('vou pegar bola')
+
 	andar(0.5, sentido='tras')
 
 	# dar meia volta
@@ -334,6 +338,8 @@ def procurar_bola():
 	receptor de vitimas.
 	"""
 
+	print('\n -- PROCURANDO BOLA -- \n')
+
 	# voltar pra frente do receptor
 	andar(2, sentido='tras')
 
@@ -347,13 +353,16 @@ def procurar_bola():
 	andar(3, esperar_acabar=False)
 
 	while esq.is_running:
+
+		print('escaneando')
+
 		amostra_anterior = amostra_atual
 		amostra_atual = sensor_lado.distance_centimeters
 
 		if (amostra_anterior - amostra_atual) > 15:
 			# opa, discrepancia grande
 
-			print('BOLA!')
+			print('\n -- VI BOLA! -- \n')
 			Sound.beep()
 			girar(lado_sensor_lado)
 			andar_ate_bola()
