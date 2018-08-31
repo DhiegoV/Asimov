@@ -294,20 +294,6 @@ def andar_ate_bola():
 	parar()
 	sleep(2)
 
-def abaixar_garra():
-	"""Abaixe a garra."""
-
-	# potencia por dois segundos
-	motor_garra.run_timed(time_sp=3000, speed_sp=300)
-
-	# espere acabar de baixar a garra
-	motor_garra.wait_while('running')
-
-	# da uma rezinha pra garantir que uma bola meia boca entra
-	andar(0.5, sentido='tras')
-	# compensar a rezinha
-	andar(0.5)
-
 def levantar_garra():
 	"""Levante a garra e pare-a no ar, catapultando as bolas pra fora."""
 
@@ -329,7 +315,29 @@ def pegar_bola():
 
 	andar(0.6, sentido='tras')
 
-	abaixar_garra()
+	# ABAIXAR GARRA
+	# potencia por dois segundos
+	motor_garra.run_timed(time_sp=5000, speed_sp=300, stop_action='hold')
+
+	# espere acabar de baixar a garra
+	motor_garra.wait_while('running')
+
+	# da uma rezinha pra garantir que uma bola meia boca entra
+	andar(0.5, sentido='tras')
+	# compensar a rezinha
+	andar(0.5)
+
+	# fazer o mesmo da rezinha, mas pra frente
+	andar(0.5)
+	andar(0.5, sentido='tras')
+
+	# dar umas giradas pra garantir mesmo
+	girar('esquerda', 10)
+	girar('direita', 20)
+	girar('esquerda', 10)
+
+# pra testar
+#pegar_bola()
 
 def procurar_bola():
 	"""Realize o caminho de procura de bolas.
