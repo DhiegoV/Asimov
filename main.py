@@ -57,6 +57,29 @@ def compensar_verde(momento):
 	esq.run_to_rel_pos(position_sp=-quanto_andar, speed_sp=vel_ajuste)
 	esq.wait_while('running')
 
+def graus_robo_para_tacho_counts_motores(graus):
+	"""Retorne quanto de tacho counts os motores giram o robo dados `graus`.
+	
+	Para girar(), eh util que quem chame diga quantos graus quer que o robo
+	gire. No entanto, como nao temos um giroscopio, fazemos isso mandando um
+	valor em tacho counts pra os dois motores, um girando em reverso, outro
+	girando normalmente, isso faz com que o robo gire em seu proprio eixo.
+	
+	Esta funcao faz o trabalho de retornar o valor em tacho counts que eh
+	preciso mandar pra os motores pra girar o robo dados `graus`.
+
+	Note que, como nao temos um giroscopio, usamos um valor que sabemos que o
+	robo gira 90 graus, por olhometro, e usamos ele como referencia pra regra
+	de tres que realiza a conversao. Este valor eh definido abaixo, pra
+	facilitar caso precise de ajuste.
+	"""
+
+	# valor de referencia de 90 graus, tc eh abreviacao de tacho counts
+	giro_noventa_graus_em_tc = 400
+
+	valor_tc = (giro_noventa_graus_em_tc * graus) / 90
+
+	return valor_tc
 
 def girar(sentido, giro=350, velocidade=300):
 	"""Gire o robo no proprio eixo o tanto informado em `giro` no dado sentido.
