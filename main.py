@@ -402,16 +402,8 @@ def rotina_sala_3():
 		# de novo
 		andar(2)
 
-	andar_ate_proximo_canto()
-
-	if tem_receptor_na_minha_frente():
-		Sound.beep().wait()
-		Sound.beep().wait()
-		print('opa, receptor tava na minha frente')
-		procurar_bola()
-
-	else:
-		print('opa, receptor NAO tava na minha frente')
+	for canto in range(3):
+		print('vou pro proximo canto pela', canto+1, 'vez')
 		andar_ate_proximo_canto()
 
 		if tem_receptor_na_minha_frente():
@@ -419,22 +411,14 @@ def rotina_sala_3():
 			Sound.beep().wait()
 			print('opa, receptor tava na minha frente')
 			procurar_bola()
+			break
 
 		else:
 			print('opa, receptor NAO tava na minha frente')
-			andar_ate_proximo_canto()
 
-			if tem_receptor_na_minha_frente():
-				Sound.beep().wait()
-				Sound.beep().wait()
-				print('opa, receptor tava na minha frente')
-				procurar_bola()
-
-			else:
-				print('opa, receptor NAO tava na minha frente')
-
+	print('nao vi nenhum receptor :/')
 	parar()
-	sleep(5)
+	sleep(20)
 
 # pra teste
 #rotina_sala_3()
