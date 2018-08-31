@@ -30,6 +30,12 @@ KI = 0
 KD = 0.008
 TP = 180 #130
 
+# o robo inicia este programa com a garra guardada, isto eh, em cima do brick e
+# sem forca pra ativamente mante-la em cima do brick; o abaixo definido eh uma
+# especie de calibracao.
+# zero eh a posicao da garra guardada.
+motor_garra.position = 0
+
 # lado do sensor de lado, isso vai definir por onde o robo vai ultrapassar o
 # obstaculo e as direcoes que ele vai tomar quando dentro da sala 3, na busca
 # de vitimas, por exemplo
@@ -41,6 +47,37 @@ if lado_sensor_lado == 'esquerda':
 	lado_contrario_sensor_lado = 'direita'
 elif lado_sensor_lado == 'direita':
 	lado_contrario_sensor_lado = 'esquerda'
+
+def guardar_garra():
+	"""Guarde a garra em cima do brick pra quando nao estiver utilizando ela.
+
+	TODA VEZ QUE GUARDAR A GARRA, DEFINA O VALOR DE estado_garra PRA 'guardada'.
+	"""
+
+	motor_garra.run_timed(time_sp=3000, speed_sp=-120)
+
+	# espere acabar de guardar
+	motor_garra.wait_while('running')
+	print('a garra estah guardada')
+
+def abaixar_garra():
+	"""Abaixe a garra pra pegar bola.
+
+	TODA VEZ QUE ABAIXAR A GARRA, DEFINA O VALOR DE estado_garra PRA 'abaixada'.
+	"""
+
+	motor_garra.run_timed(stop_action='hold', time_sp=5000, speed_sp=400)
+
+	# espere acabar de abaixar
+	motor_garra.wait_while('running')
+	print('a garra estah abaixada')
+
+# colocar a garra num estado conhecido
+guardar_garra()
+estado_garra = 'guardada'
+
+#abaixar_garra()
+#estado_garra = 'abaixada'
 
 def compensar_verde(momento):
 	"""Compensa andando para realizar o trajeto do verde corretamente."""
@@ -75,8 +112,15 @@ def graus_robo_para_tacho_counts_motores(graus):
 	"""
 
 	# valor de referencia de 90 graus, tc eh abreviacao de tacho counts
-	giro_noventa_graus_em_tc = 400
 
+	# o valor de giro para girar 90 graus eh diferente se a garra estah
+	# abaixada ou guardada, pois o centro de gravidade eh movido
+	if estado_garra == 'guardada':
+		giro_noventa_graus_em_tc = 400
+	elif estado_garra == 'abaixada':
+		giro_noventa_graus_em_tc = 282.5
+
+	# tc eh abreviacao de tacho counts
 	valor_tc = (giro_noventa_graus_em_tc * graus) / 90
 
 	return valor_tc
@@ -109,7 +153,7 @@ def girar(sentido, graus=90, velocidade=300):
 	esq.wait_while('running')
 
 # pra teste
-#girar('direita', 180)
+#girar('esquerda', 360)
 
 def andar(distancia_rot, velocidade=100, sentido='frente', esperar_acabar=True):
 	"""Faca o robo andar com os parametros informados.
@@ -317,7 +361,8 @@ def pegar_bola():
 
 	# ABAIXAR GARRA
 	# potencia por dois segundos
-	motor_garra.run_timed(time_sp=5000, speed_sp=300, stop_action='hold')
+	motor_garra.run_timed(time_sp=8000, speed_sp=400, stop_action='hold')
+	estado_garra = 'abaixada'
 
 	# espere acabar de baixar a garra
 	motor_garra.wait_while('running')
@@ -611,8 +656,6 @@ def executar():
 
 	achismos_rampa = 0
 	to_na_rampa = False
-
-	relaxar_garra()
 
 	while not botao.any():
 		if parece_verde():
