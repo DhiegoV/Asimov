@@ -410,6 +410,10 @@ def rotina_sala_3():
 		# de novo
 		andar(2)
 
+	# girar bem pouquinho pro lado do sensor pra que o robo ante arrastando na
+	# parede
+	girar(lado_sensor_lado, 10)
+
 	for canto in range(3):
 		print('vou pro proximo canto pela', canto+1, 'vez')
 		andar_ate_proximo_canto()
