@@ -179,13 +179,6 @@ def ultrapassar_obstaculo():
 
 #ultrapassar_obstaculo()
 
-def compensar_obstaculo():
-	quanto_andar = 40
-	velocidade = 100
-	dir.run_to_rel_pos(position_sp=quanto_andar, speed_sp= velocidade)
-	esq.run_to_rel_pos(position_sp=quanto_andar, speed_sp = velocidade)
-	esq.wait_while('running')
-
 def parar():
 	"""Para os motores da esteira imediatamente."""
 
