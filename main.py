@@ -33,7 +33,7 @@ TP = 180 #130
 # lado do sensor de lado, isso vai definir por onde o robo vai ultrapassar o
 # obstaculo e as direcoes que ele vai tomar quando dentro da sala 3, na busca
 # de vitimas, por exemplo
-lado_sensor_lado = 'esquerda'
+lado_sensor_lado = 'direita'
 
 # pra se orientar na sala 3 em funcao do lado que o sensor estah, deve-se
 # definir o lado que o sensor nao estah tambem
