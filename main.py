@@ -573,6 +573,24 @@ def relaxar_garra():
 
 	motor_garra.stop(stop_action='coast')
 
+def vejo_silver_tape():
+	"""Retorne booleano se os sensores de reflectancia veem a silver tape.
+
+	O intervalo que define se a reflectancia atual eh a de silver tape eh
+	calibrado previamente e entao eh consultado aqui.
+	"""
+
+	if sensor_dir.value() in range(direita['silver_tape_min'], direita['silver_tape_max']) \
+		  and sensor_esq.value() in range(esquerda['silver_tape_min'], esquerda['silver_tape_max']):
+
+		# anda um pouco e verifica de novo
+		andar(0.1)
+		return sensor_dir.value() in range(direita['silver_tape_min'], direita['silver_tape_max']) \
+			  and sensor_esq.value() in range(esquerda['silver_tape_min'], esquerda['silver_tape_max'])
+
+	else:
+		return False
+
 def executar():
 	pid = PID(KP, KI, KD)
 	pid.SetPoint = 0
@@ -625,6 +643,17 @@ def executar():
 		if to_na_rampa == True and sensor_frente.distance_centimeters < 10:
 			# to vendo uma possibilidade de receptor
 			rotina_sala_3()
+
+		if to_na_rampa == True and vejo_silver_tape():
+			parar()
+			Sound.beep().wait()
+			sleep(0.1)
+			Sound.beep().wait()
+			sleep(0.1)
+			Sound.beep().wait()
+			# Sound.play('../gemidao_do_zap.wav')
+			print('\n -- TO NA SALA 3 -- \n')
+			sleep(10)
 
 		erro = get_valor_sensor_direita() - get_valor_sensor_esquerda()
 		pid.update(erro)

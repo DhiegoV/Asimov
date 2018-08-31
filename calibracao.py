@@ -73,6 +73,23 @@ verde = sensor_esq.value()
 esquerda["verde_min"] = verde - margem_de_erro
 esquerda["verde_max"] = verde + margem_de_erro
 
+# SILVER TAPE
+# margem de erro para o intervalo do que eh a silver tape em termos de
+# reflectancia
+
+print('os dois -> silver tape')
+esperar_botao()
+
+silver_tape_esq = sensor_esq.value()
+silver_tape_dir = sensor_dir.value()
+
+esquerda['silver_tape_min'] = silver_tape_esq - margem_de_erro
+esquerda['silver_tape_max'] = silver_tape_esq + margem_de_erro
+
+direita['silver_tape_min'] = silver_tape_dir - margem_de_erro
+direita['silver_tape_max'] = silver_tape_dir + margem_de_erro
+
+
 # SALVANDO
 arq_dir = open("sensor_direita.json", 'w')
 dump(direita, arq_dir)
