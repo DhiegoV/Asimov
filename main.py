@@ -81,11 +81,20 @@ def graus_robo_para_tacho_counts_motores(graus):
 
 	return valor_tc
 
-def girar(sentido, giro=350, velocidade=300):
-	"""Gire o robo no proprio eixo o tanto informado em `giro` no dado sentido.
+def girar(sentido, graus=90, velocidade=300):
+	"""Gire o robo no proprio eixo tantos `graus` no dado `sentido`.
 	
-	Por padrao, gire 90 graus no dado sentido.
+	Parametros:
+	`sentido` (string, 'esquerda' ou 'direita', case sensitive)
+		eh o sentido que o robo gira;
+	`graus` (float, por padrao 90)
+		eh o tanto de graus que robo gira;
+	`velocidade` (float, por padrao 300)
+		eh a velocidade que o robo gira.
 	"""
+
+	# para uma explicacao disso, vide a definicao da funcao abaixo
+	giro = graus_robo_para_tacho_counts_motores(graus)
 
 	if sentido == 'esquerda' and giro < 0:
 		giro *= -1
