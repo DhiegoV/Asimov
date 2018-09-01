@@ -463,7 +463,9 @@ def procurar_bola():
 			print('amostra atual:', amostra_atual)
 			print('amostra_anterior', amostra_anterior)
 			print('\n -- VI BOLA! -- \n')
+			print('esq.position')
 			Sound.beep()
+	
 
 			parar()
 			sleep(0.5)
@@ -480,11 +482,6 @@ def procurar_bola():
 			andar_ate_bola()
 			pegar_bola()
 
-			andar_ate_proximo_canto()
-			girar(lado_contrario_sensor_lado)
-			andar_ate_proximo_canto()
-			levantar_garra()
-	
 	print('acabei de escanear')
 
 def andar_ate_proximo_canto():
@@ -494,6 +491,25 @@ def andar_ate_proximo_canto():
 
 	while sensor_frente.distance_centimeters > 10:
 		pass
+
+def depositar_bola():
+	"""Com alguma bola na cacamba, volte pro receptor pra deixar a bola nele."""
+
+	andar_ate_proximo_canto()
+	girar(lado_contrario_sensor_lado)
+
+	# gira pra parede
+	girar(lado_sensor_lado, 20)
+
+	# anda ate receptor
+	andar_ate_proximo_canto()
+
+	# gira pra ficar do lado do receptor
+	girar(lado_contrario_sensor_lado, 40)
+
+	# anda pra ficar no centro do lado do receptor
+	andar(0.5)
+	levantar_garra()
 
 def rotina_sala_3():
 	"""Faca a sala 3.
