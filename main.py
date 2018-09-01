@@ -410,7 +410,8 @@ def investigar_bola():
 	while esq.is_running:
 		distancia_posicao = (sensor_lado.distance_centimeters, esq.position)
 		amostras_detalhadas.append(distancia_posicao)
-	
+
+	print('VALORES INVESTIGADOS:', distancia_posicao)	
 	menor_distancia = 1000
 	menor_amostra = None
 	for amostra in amostras_detalhadas:
@@ -454,7 +455,7 @@ def procurar_bola():
 	while esq.is_running or not sensor_frente.distance_centimeters < 5:
 
 		print('escaneando')
-
+		print('AMOSTRAS SENSOR LADO ATUAL:',amostra_atual)
 		amostra_anterior = amostra_atual
 		amostra_atual = sensor_lado.distance_centimeters
 
@@ -463,7 +464,6 @@ def procurar_bola():
 			print('amostra atual:', amostra_atual)
 			print('amostra_anterior', amostra_anterior)
 			print('\n -- VI BOLA! -- \n')
-			print('esq.position')
 			Sound.beep()
 	
 
@@ -481,6 +481,7 @@ def procurar_bola():
 
 			andar_ate_bola()
 			pegar_bola()
+			break
 
 	print('acabei de escanear')
 
@@ -496,7 +497,7 @@ def depositar_bola():
 	"""Com alguma bola na cacamba, volte pro receptor pra deixar a bola nele."""
 
 	andar_ate_proximo_canto()
-	girar(lado_contrario_sensor_lado)
+	girar(lado_contrario_sensor_lado,-20)
 
 	# gira pra parede
 	girar(lado_sensor_lado, 20)
@@ -546,6 +547,7 @@ def rotina_sala_3():
 			Sound.beep().wait()
 			print('opa, receptor tava na minha frente')
 			procurar_bola()
+			depositar_bola()
 			break
 
 		else:
