@@ -399,6 +399,37 @@ def pegar_bola():
 # pra testar
 #pegar_bola()
 
+def investigar_bola():
+	"""Realize uma busca cautelosa e deixe o robo preparado pra ir buscar a bola."""
+
+	andar(0.5, sentido='tras')
+
+	andar(1, velocidade=100, esperar_acabar=False)
+
+	amostras_detalhadas = []
+	while esq.is_running:
+		distancia_posicao = (sensor_lado.distance_centimeters, esq.position)
+		amostras_detalhadas.append(distancia_posicao)
+	
+	menor_distancia = 1000
+	menor_amostra = None
+	for amostra in amostras_detalhadas:
+		# se distancia da `amostra` (indice 0), for menor que a menor, ela eh a menor
+		if amostra[0] < menor_distancia:
+			menor_distancia = amostra[0]
+			menor_amostra = amostra
+
+	# peguei a menor distancia, peguei a posicao que ela foi vista, sei pra onde ir
+	menor_posicao = menor_amostra[1]
+	andar_pra_sempre(sentido='tras', velocidade=100)
+	margem_erro = 1
+	while not esq.position in range(menor_posicao-margem_erro, menor_posicao+margem_erro):
+		pass
+	parar()
+
+	print('opa, alinhei o sensor_lado com a vitima')
+	sleep(0.5)
+
 def procurar_bola():
 	"""Realize o caminho de procura de bolas.
 
@@ -418,9 +449,9 @@ def procurar_bola():
 	amostra_atual = sensor_lado.distance_centimeters
 
 	# comecar a procurar
-	andar(3, esperar_acabar=False)
+	andar(4, esperar_acabar=False)
 
-	while esq.is_running:
+	while esq.is_running or not sensor_frente.distance_centimeters < 5:
 
 		print('escaneando')
 
@@ -429,16 +460,32 @@ def procurar_bola():
 
 		if (amostra_anterior - amostra_atual) > 15:
 			# opa, discrepancia grande
-
+			print('amostra atual:', amostra_atual)
+			print('amostra_anterior', amostra_anterior)
 			print('\n -- VI BOLA! -- \n')
 			Sound.beep()
+
+			parar()
+			sleep(0.5)
+
+			# alinhar o sensor_lado com a bola
+			investigar_bola()
+
+			# alinhar o eixo de giro do robo com a bola
+			andar(0.2, sentido='tras')
+
+			# se colocar na direcao da captura
 			girar(lado_sensor_lado)
+
 			andar_ate_bola()
 			pegar_bola()
+
 			andar_ate_proximo_canto()
 			girar(lado_contrario_sensor_lado)
 			andar_ate_proximo_canto()
 			levantar_garra()
+	
+	print('acabei de escanear')
 
 def andar_ate_proximo_canto():
 	"""Anda ate o sensor_frente ver menos que 10."""
