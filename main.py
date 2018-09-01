@@ -30,12 +30,6 @@ KI = 0
 KD = 0.008
 TP = 180 #130
 
-# o robo inicia este programa com a garra guardada, isto eh, em cima do brick e
-# sem forca pra ativamente mante-la em cima do brick; o abaixo definido eh uma
-# especie de calibracao.
-# zero eh a posicao da garra guardada.
-motor_garra.position = 0
-
 # lado do sensor de lado, isso vai definir por onde o robo vai ultrapassar o
 # obstaculo e as direcoes que ele vai tomar quando dentro da sala 3, na busca
 # de vitimas, por exemplo
@@ -54,10 +48,14 @@ def guardar_garra():
 	TODA VEZ QUE GUARDAR A GARRA, DEFINA O VALOR DE estado_garra PRA 'guardada'.
 	"""
 
-	motor_garra.run_timed(time_sp=3000, speed_sp=-120)
+	motor_garra.run_timed(time_sp=3000, speed_sp=-120, stop_action='coast')
 
 	# espere acabar de guardar
 	motor_garra.wait_while('running')
+
+	# esperar a garra chegar ao repouso em cima do brick
+	sleep(1)
+
 	print('a garra estah guardada')
 
 def abaixar_garra():
@@ -75,6 +73,12 @@ def abaixar_garra():
 # colocar a garra num estado conhecido
 guardar_garra()
 estado_garra = 'guardada'
+
+# o robo inicia este programa com a garra guardada, isto eh, em cima do brick e
+# sem forca pra ativamente mante-la em cima do brick; o abaixo definido eh uma
+# especie de calibracao.
+# zero eh a posicao da garra guardada.
+motor_garra.position = 0
 
 #abaixar_garra()
 #estado_garra = 'abaixada'
@@ -339,9 +343,20 @@ def andar_ate_bola():
 	sleep(2)
 
 def levantar_garra():
-	"""Levante a garra e pare-a no ar, catapultando as bolas pra fora."""
+	"""Levante a garra e pare-a no ar, deixando-a na horizontal para as bolas cairem.
+	
+	LEMBRE-SE DE QUE levantar_garra() EH UM ESTADO TEMPORARIO, isto eh, o robo
+	nao vai ficar pra sempre com a garra levantada. Logo que ele levanta, deve
+	esperar um pouco e guardar_garra().
+	"""
 
-	motor_garra.run_to_rel_pos(position_sp=-150, speed_sp=300, stop_action='hold')
+	# 28 eh a posicao de despejo quando 0 eh a posicao de `guardada`
+	motor_garra.run_to_abs_pos(position_sp=28, speed_sp=100, stop_action='hold')
+
+	# espera acabar de levantar a garra
+	motor_garra.wait_while('running')
+
+	print('garra estah LEVANTADA')
 
 # pra testar
 #levantar_garra()
